@@ -1,20 +1,24 @@
+// Togo flag colors: green, yellow, red
 const bands = [
   {
     id: 'band-1',
     words: ['BEACHES', 'LOMÉ', 'TOGO', 'WEEKEND', 'ACCRA', 'VIBES'],
-    bg: '#7ED4D4',
+    bg: '#006A4E',
+    textColor: '#FFCB00',
     reverse: false,
   },
   {
     id: 'band-2',
     words: ['FOOD', 'DRINKS', 'NIGHTLIFE', 'MUSIC', 'CULTURE', 'CUISINE'],
-    bg: '#C5BBEE',
+    bg: '#FFCB00',
+    textColor: '#1A1508',
     reverse: true,
   },
   {
     id: 'band-3',
     words: ['GOZEM', 'BEACHES', 'BORDER', 'EXPLORE', 'STAY', 'ENJOY'],
-    bg: '#E8756A',
+    bg: '#D4483C',
+    textColor: '#FFCB00',
     reverse: false,
   },
 ]
@@ -62,16 +66,17 @@ export default function DiagonalMarquee() {
                 {repeated.map((word, i) => (
                   <span
                     key={i}
-                    className="font-hero font-black text-[#1A1508] flex-shrink-0"
+                    className="font-hero font-black flex-shrink-0"
                     style={{
                       fontSize: FONT_SIZE,
                       lineHeight: '1',
                       paddingLeft: '2.5rem',
                       paddingRight: '2.5rem',
+                      color: band.textColor,
                     }}
                   >
                     {word}
-                    <span className="opacity-30 mx-2">·</span>
+                    <span className="opacity-40 mx-2">·</span>
                   </span>
                 ))}
               </div>
