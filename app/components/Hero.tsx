@@ -52,11 +52,6 @@ export default function Hero() {
         className="relative flex-1 flex flex-col max-w-7xl mx-auto w-full px-8 md:px-12"
         style={{ zIndex: 3 }}
       >
-        {/* Eyebrow */}
-        <p className="pt-28 font-body text-[10px] uppercase tracking-[0.5em] text-white/40">
-          Accra → Lomé · The Complete Weekend Guide
-        </p>
-
         {/* Push to bottom */}
         <div className="flex-1 flex flex-col justify-end pb-14 md:pb-20">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">

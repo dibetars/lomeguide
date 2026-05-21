@@ -39,7 +39,7 @@ export default function NightlifeSection() {
           </p>
           <h2
             className="font-display font-extrabold uppercase text-white leading-none mb-5"
-            style={{ fontSize: 'clamp(2.5rem, 7vw, 5.5rem)' }}
+            style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)' }}
           >
             Starts Late,
             <br />
