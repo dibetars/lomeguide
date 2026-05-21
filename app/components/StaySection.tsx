@@ -97,12 +97,12 @@ export default function StaySection() {
               >
                 {/* Emoji + title + pills */}
                 <div className="flex items-center gap-3 md:gap-5 min-w-0">
-                  {/* Emoji — appears when active */}
+                  {/* Emoji — always visible, pops on active */}
                   <span
                     className="text-xl md:text-2xl flex-shrink-0 transition-all duration-300"
                     style={{
-                      opacity: active === i ? 1 : 0,
-                      transform: active === i ? 'scale(1)' : 'scale(0.4)',
+                      opacity: active === i ? 1 : 0.2,
+                      transform: active === i ? 'scale(1)' : 'scale(0.75)',
                     }}
                   >
                     {stay.emoji}
@@ -191,11 +191,12 @@ export default function StaySection() {
               {stays.map((stay, i) => (
                 <div
                   key={stay.name}
-                  className="absolute inset-0 flex items-center justify-center transition-all duration-500"
+                  className="absolute inset-0 flex flex-col items-center justify-center transition-all duration-500"
                   style={{
                     backgroundColor: stay.imageBg,
                     opacity: active === i ? 1 : 0,
-                    transform: active === i ? 'scale(1)' : 'scale(1.06)',
+                    transform: active === i ? 'scale(1)' : 'scale(1.04)',
+                    pointerEvents: 'none',
                   }}
                 >
                   <span
@@ -204,6 +205,22 @@ export default function StaySection() {
                   >
                     {stay.emoji}
                   </span>
+                  <p
+                    className="font-hero italic font-black text-white/70 mt-4 text-center px-6"
+                    style={{ fontSize: 'clamp(1rem, 2vw, 1.25rem)' }}
+                  >
+                    {stay.name}
+                  </p>
+                  <div className="flex flex-wrap gap-2 justify-center mt-3 px-6">
+                    {stay.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="font-body text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full border border-white/30 text-white/60"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
