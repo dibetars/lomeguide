@@ -7,48 +7,59 @@ export default function GettingThere() {
         <SectionHeader
           number="01 — Getting There"
           title="Accra to the Border"
-          subtitle="All public transport leaves from Tudu in central Accra, dropping you directly at the Aflao border. Walk through immigration and step right into Lomé — the city sits directly on the border line."
+          subtitle="All public transport leaves from Tudu in central Accra, dropping you directly at the Aflao border. Walk through immigration and step right into Lomé."
         />
 
         <div className="grid md:grid-cols-2 gap-6 mb-10">
-          <div className="border border-stone-200 p-8 hover:border-[#006A4E] transition-colors">
-            <div className="flex items-center gap-3 mb-5">
-              <span className="text-2xl">🚌</span>
-              <p className="font-body text-[10px] uppercase tracking-widest text-stone-400">
+          {/* Budget card */}
+          <div className="bg-[#C4873A] text-white p-8 min-h-[240px] flex flex-col justify-between">
+            <div>
+              <p className="font-body text-[10px] uppercase tracking-widest text-white/60 mb-3">
                 Budget Option
               </p>
+              <p className="font-display font-extrabold text-white leading-none" style={{ fontSize: '5rem' }}>
+                80
+              </p>
+              <p className="font-display font-bold text-xl text-white">GHS</p>
             </div>
-            <p className="font-display text-5xl font-light text-stone-800 mb-2">80 GHS</p>
-            <p className="font-body text-sm font-semibold text-stone-700 mb-4">12-Seater Bus</p>
-            <p className="font-body text-sm text-stone-500 leading-relaxed">
-              Cheap and cheerful, but you'll wait for the bus to fill up with passengers before
-              departing Tudu.
-            </p>
-          </div>
-
-          <div className="border border-stone-200 p-8 hover:border-[#006A4E] transition-colors bg-[#FAF7F2]">
-            <div className="flex items-center gap-3 mb-5">
-              <span className="text-2xl">🚗</span>
-              <p className="font-body text-[10px] uppercase tracking-widest text-stone-400">
-                Comfort Option
+            <div>
+              <p className="font-body text-sm font-semibold text-white mb-2">🚌 12-Seater Bus</p>
+              <p className="font-body text-sm text-white/75 leading-relaxed">
+                Cheap and cheerful, but you&apos;ll wait for the bus to fill up before departing Tudu.
               </p>
             </div>
-            <p className="font-display text-5xl font-light text-stone-800 mb-2">200 GHS</p>
-            <p className="font-body text-sm font-semibold text-stone-700 mb-4">4-Seater Sedan</p>
-            <p className="font-body text-sm text-stone-500 leading-relaxed">
-              Faster, more legroom, and gets you to the border with fewer stops along the way.
-            </p>
+          </div>
+
+          {/* Comfort card */}
+          <div className="bg-[#006A4E] text-white p-8 min-h-[240px] flex flex-col justify-between">
+            <div>
+              <p className="font-body text-[10px] uppercase tracking-widest text-white/60 mb-3">
+                Comfort Option
+              </p>
+              <p className="font-display font-extrabold text-white leading-none" style={{ fontSize: '5rem' }}>
+                200
+              </p>
+              <p className="font-display font-bold text-xl text-white">GHS</p>
+            </div>
+            <div>
+              <p className="font-body text-sm font-semibold text-white mb-2">🚗 4-Seater Sedan</p>
+              <p className="font-body text-sm text-white/75 leading-relaxed">
+                Faster, more legroom, and gets you to the border with fewer stops along the way.
+              </p>
+            </div>
           </div>
         </div>
 
-        <div className="flex gap-4 bg-[#006A4E]/5 border-l-2 border-[#006A4E] p-5 rounded-r">
+        <div className="flex gap-4 bg-[#006A4E]/8 border-l-4 border-[#006A4E] p-5">
           <span className="text-xl flex-shrink-0">💡</span>
           <div>
-            <p className="font-body text-sm font-semibold text-stone-800 mb-1">Health Pro-Tip</p>
-            <p className="font-body text-sm text-stone-600 leading-relaxed">
-              Everyone — regardless of nationality — must bring their valid{' '}
-              <strong>Passport</strong> and physical <strong>Yellow Card</strong> (Yellow Fever
-              vaccination card). Border officials on both sides check this strictly.
+            <p className="font-display text-sm font-bold uppercase tracking-wide text-[#1A1508] mb-1">
+              Health Pro-Tip
+            </p>
+            <p className="font-body text-sm text-[#1A1508]/70 leading-relaxed">
+              Everyone must bring their valid <strong>Passport</strong> and physical{' '}
+              <strong>Yellow Card</strong> (Yellow Fever vaccination card). Border officials on both
+              sides check this strictly.
             </p>
           </div>
         </div>

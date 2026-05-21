@@ -1,6 +1,13 @@
 import type { Metadata } from 'next'
-import { Cormorant_Garamond, Inter } from 'next/font/google'
+import { Syne, Cormorant_Garamond, Inter } from 'next/font/google'
 import './globals.css'
+
+const syne = Syne({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-syne',
+  display: 'swap',
+})
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -29,8 +36,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${inter.variable}`}>
-      <body className="bg-[#FAF7F2]">{children}</body>
+    <html lang="en" className={`${syne.variable} ${cormorant.variable} ${inter.variable}`}>
+      <body className="bg-[#EDE3CF] text-[#1A1508]">{children}</body>
     </html>
   )
 }

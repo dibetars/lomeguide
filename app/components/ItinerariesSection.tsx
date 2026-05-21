@@ -11,9 +11,7 @@ const experiences = [
       'Oceanfront nightcaps at ZanziBar',
     ],
     mood: '🌊 Beach & Chill',
-    wrapperClass: 'border-[#006A4E]/20 bg-[#006A4E]/5',
-    numClass: 'text-[#006A4E]',
-    dotClass: 'text-[#006A4E]',
+    bg: 'bg-[#006A4E]',
   },
   {
     number: '02',
@@ -26,23 +24,19 @@ const experiences = [
       'Dive into nightlife at MAD Complexe',
     ],
     mood: '🎉 Explore & Party',
-    wrapperClass: 'border-[#D21034]/20 bg-[#D21034]/5',
-    numClass: 'text-[#D21034]',
-    dotClass: 'text-[#D21034]',
+    bg: 'bg-[#D4483C]',
   },
   {
     number: '03',
-    title: 'The Ultimate Lifestyle Blend',
+    title: 'Ultimate Lifestyle Blend',
     steps: [
       'Premium brunch at Le Patio',
-      'Hot afternoon sunbathing at Pure Plage',
+      'Hot afternoon at Pure Plage',
       'Breezy open-air dinner at Le Hangar',
       'Upscale drink on the 2 Février Rooftop',
     ],
     mood: '✨ Luxury & Lifestyle',
-    wrapperClass: 'border-amber-200 bg-amber-50',
-    numClass: 'text-amber-600',
-    dotClass: 'text-amber-500',
+    bg: 'bg-[#C4873A]',
   },
 ]
 
@@ -56,22 +50,24 @@ export default function ItinerariesSection() {
           subtitle="Three curated experiences for different travel moods. Mix and match as you see fit."
         />
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-4">
           {experiences.map((exp) => (
-            <div key={exp.number} className={`border p-6 ${exp.wrapperClass}`}>
-              <p className={`font-display text-5xl font-light mb-4 ${exp.numClass}`}>
-                {exp.number}
-              </p>
-              <p className="font-body text-[10px] uppercase tracking-widest text-stone-400 mb-2">
-                {exp.mood}
-              </p>
-              <h3 className="font-body text-sm font-semibold text-stone-800 mb-5">{exp.title}</h3>
+            <div key={exp.number} className={`${exp.bg} text-white p-6 min-h-[320px] flex flex-col justify-between`}>
+              <div>
+                <p className="font-display font-extrabold text-white/20 leading-none mb-4" style={{ fontSize: '4rem' }}>
+                  {exp.number}
+                </p>
+                <p className="font-body text-[10px] uppercase tracking-widest text-white/60 mb-2">
+                  {exp.mood}
+                </p>
+                <h3 className="font-display text-sm font-bold uppercase tracking-wide text-white mb-5">
+                  {exp.title}
+                </h3>
+              </div>
               <ol className="space-y-3">
                 {exp.steps.map((step, i) => (
-                  <li key={i} className="flex gap-3 font-body text-sm text-stone-600">
-                    <span className={`font-display text-lg font-light flex-shrink-0 leading-tight ${exp.dotClass}`}>
-                      {i + 1}
-                    </span>
+                  <li key={i} className="flex gap-3 font-body text-sm text-white/80">
+                    <span className="font-display font-bold text-white/30 flex-shrink-0 w-4">{i + 1}</span>
                     <span className="leading-relaxed">{step}</span>
                   </li>
                 ))}

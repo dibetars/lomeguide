@@ -11,13 +11,13 @@ export default function SectionHeader({ number, title, subtitle }: Props) {
         {number}
       </p>
       <h2
-        className="font-display font-light italic text-stone-900 leading-tight mb-4"
-        style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)' }}
+        className="font-display font-extrabold uppercase text-[#1A1508] leading-none mb-5"
+        style={{ fontSize: 'clamp(2.5rem, 7vw, 5.5rem)' }}
       >
         {title}
       </h2>
       {subtitle && (
-        <p className="font-body text-stone-500 text-base max-w-xl leading-relaxed">{subtitle}</p>
+        <p className="font-body text-[#1A1508]/60 text-base max-w-xl leading-relaxed">{subtitle}</p>
       )}
     </div>
   )
