@@ -10,3 +10,8 @@ yarn-debug.log*
 .vercel
 *.tsbuildinfo
 next-env.d.ts
+
+# Video assets — too large for GitHub (host on CDN or use Git LFS)
+public/*.mov
+public/*.mp4
+public/*.webm
