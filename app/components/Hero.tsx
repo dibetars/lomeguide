@@ -89,21 +89,6 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Stats row */}
-          <div className="grid grid-cols-3 gap-6 md:gap-16 border-t border-white/10 pt-8 mt-12 max-w-lg">
-            {[
-              { value: '80 GHS', label: 'Budget Bus' },
-              { value: '30 Days', label: 'Visa-Free' },
-              { value: '~47 XOF', label: 'Per 1 GHS' },
-            ].map((s) => (
-              <div key={s.label}>
-                <p className="font-display font-bold text-xl md:text-2xl text-white">{s.value}</p>
-                <p className="font-body text-[10px] text-white/30 uppercase tracking-widest mt-1">
-                  {s.label}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>
