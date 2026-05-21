@@ -20,9 +20,9 @@ const bands = [
 ]
 
 const stickers = [
-  { emoji: '🌴', bg: '#FFCB00', size: 130, top: '12%', left: '36%' },
-  { emoji: '🥂', bg: '#EDE3CF', size: 150, top: '46%', left: '60%' },
-  { emoji: '🍽️', bg: '#F5D0B0', size: 138, top: '78%', left: '22%' },
+  { emoji: '🇹🇬', bg: '#ffffff', size: 130, top: '12%', left: '36%' },
+  { emoji: '🇹🇬', bg: '#ffffff', size: 150, top: '46%', left: '60%' },
+  { emoji: '🇹🇬', bg: '#ffffff', size: 138, top: '78%', left: '22%' },
 ]
 
 export default function DiagonalMarquee() {
