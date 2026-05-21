@@ -2,7 +2,8 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col overflow-hidden bg-[#060E0A]"
+      className="relative flex flex-col overflow-hidden bg-[#060E0A]"
+      style={{ minHeight: 'calc(72vh + 144px)' }}
     >
       {/* ── Background video ── */}
       <video

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import CurrencyConverter from './CurrencyConverter'
 
 // ── Togo flag palette ──────────────────────────────────────────────────
 const FLAG = ['#006A4E', '#FFCB00', '#D4483C'] as const
@@ -130,7 +131,7 @@ const sections = [
             { icon: '🏁', title: 'Aflao Border', label: 'Recommended for Cash', desc: 'Many changers on both sides. Ask 2–3 for rates first. Always count your CFA carefully before handing over your Cedis.' },
             { icon: '🏦', title: 'Lomé Forex Bureaus', label: 'Structured Environment', desc: 'Official Bureaux de Change in the city center, though hours are more restrictive than the 24/7 border market.' },
           ].map(item => (
-            <div key={item.title} className="bg-white/60 p-6 rounded-xl">
+            <div key={item.title} className="bg-white p-6 rounded-xl border border-stone-100">
               <span className="text-3xl block mb-4">{item.icon}</span>
               <p className="font-body text-[10px] uppercase tracking-widest text-stone-400 mb-1">{item.label}</p>
               <p className="font-body text-sm font-semibold text-stone-800 mb-3">{item.title}</p>
@@ -138,20 +139,7 @@ const sections = [
             </div>
           ))}
         </div>
-        <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-[#FFCB00]/20 border border-[#FFCB00]/40 p-6 rounded-xl">
-            <p className="font-body text-[10px] uppercase tracking-widest text-stone-500 mb-2">Exchange Rate Benchmark</p>
-            <p className="font-display text-4xl font-light text-stone-800 mb-1">45–50 XOF</p>
-            <p className="font-body text-sm text-stone-500 mb-4">per 1 GHS</p>
-            <p className="font-body text-xs text-stone-500 leading-relaxed">Rates fluctuate daily. Check <strong>Xe</strong> or <strong>Wise</strong> on the morning of your trip so you can spot a bad deal immediately.</p>
-          </div>
-          <div className="bg-white/60 border border-stone-100 p-6 rounded-xl">
-            <p className="font-body text-[10px] uppercase tracking-widest text-stone-500 mb-2">ATMs & Card Payments</p>
-            <p className="font-body text-sm font-semibold text-stone-800 mb-1">Ecobank · Atlantic Bank · Orabank</p>
-            <p className="font-body text-xs text-stone-400 mb-4">Withdraw CFA directly</p>
-            <p className="font-body text-xs text-stone-500 leading-relaxed">Alert your Ghanaian bank before traveling. High-end spots accept cards, but street food, taxis, and smaller bars are strictly <strong>cash-only</strong>.</p>
-          </div>
-        </div>
+        <CurrencyConverter />
       </div>
     ),
   },
@@ -179,10 +167,37 @@ const sections = [
           ))}
         </div>
         <div className="bg-[#006A4E] text-white p-8 rounded-xl">
-          <span className="text-4xl block mb-6">📱</span>
           <p className="font-body text-[10px] uppercase tracking-widest text-[#FFCB00] mb-3">Pro Tip</p>
           <p className="font-display text-2xl font-light italic mb-4">Download before you cross</p>
-          <p className="font-body text-sm text-white/80 leading-relaxed">Set up the Gozem app using your Ghanaian phone number <strong className="text-white">before</strong> you cross the border — so you&apos;re ready to request a ride the second you step out of immigration.</p>
+          <p className="font-body text-sm text-white/80 leading-relaxed mb-6">Set up the Gozem app using your Ghanaian phone number <strong className="text-white">before</strong> you cross the border — so you&apos;re ready to request a ride the second you step out of immigration.</p>
+          <div className="flex flex-col gap-3">
+            <a
+              href="https://apps.apple.com/app/gozem/id1455218097"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 bg-white/10 hover:bg-white/20 transition-colors px-4 py-3 rounded-xl border border-white/20"
+            >
+              <span className="text-2xl flex-shrink-0">🍎</span>
+              <div>
+                <p className="font-body text-[10px] uppercase tracking-widest text-white/50">Download on the</p>
+                <p className="font-body text-sm font-semibold text-white">App Store</p>
+              </div>
+              <span className="ml-auto text-white/40 text-sm">↗</span>
+            </a>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.gozem.passenger"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 bg-white/10 hover:bg-white/20 transition-colors px-4 py-3 rounded-xl border border-white/20"
+            >
+              <span className="text-2xl flex-shrink-0">▶️</span>
+              <div>
+                <p className="font-body text-[10px] uppercase tracking-widest text-white/50">Get it on</p>
+                <p className="font-body text-sm font-semibold text-white">Google Play</p>
+              </div>
+              <span className="ml-auto text-white/40 text-sm">↗</span>
+            </a>
+          </div>
         </div>
       </div>
     ),
@@ -196,22 +211,25 @@ const sections = [
       <div className="space-y-4">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
-            { name: 'Marcelo Beach Club', tags: ['Top Pick', 'Beachfront'], emoji: '🏖️' },
-            { name: 'Nomads Hotel', tags: ['Top Pick', 'Lifestyle Vibe'], emoji: '✨' },
-            { name: 'Pure Plage', tags: ['Beach Luxury', 'Private Beach'], emoji: '🌊' },
-            { name: 'Le Patio', tags: ['Boutique', 'Central'], emoji: '🌿' },
-            { name: 'ONOMO Hotel Lomé', tags: ['Beachfront', 'Business'], emoji: '🏨' },
-            { name: 'Budget Airbnbs', tags: ['Best Value', 'From $10/night'], emoji: '🏠' },
+            { name: 'Marcelo Beach Club', tags: ['Top Pick', 'Beachfront'], emoji: '🏖️', url: 'https://maps.app.goo.gl/marcelo-beach-lome' },
+            { name: 'Nomads Hotel', tags: ['Top Pick', 'Lifestyle Vibe'], emoji: '✨', url: 'https://www.google.com/maps/search/Nomads+Hotel+Lome+Togo' },
+            { name: 'Pure Plage', tags: ['Beach Luxury', 'Private Beach'], emoji: '🌊', url: 'https://www.google.com/maps/search/Pure+Plage+Lome+Togo' },
+            { name: 'Le Patio', tags: ['Boutique', 'Central'], emoji: '🌿', url: 'https://www.google.com/maps/search/Le+Patio+Lome+Togo' },
+            { name: 'ONOMO Hotel Lomé', tags: ['Beachfront', 'Business'], emoji: '🏨', url: 'https://www.google.com/maps/search/ONOMO+Hotel+Lome+Togo' },
+            { name: 'Budget Airbnbs', tags: ['Best Value', 'From $10/night'], emoji: '🏠', url: 'https://www.airbnb.com/s/Lom%C3%A9--Togo' },
           ].map(stay => (
-            <div key={stay.name} className="bg-white/60 p-6 rounded-xl">
-              <span className="text-3xl block mb-3">{stay.emoji}</span>
+            <a key={stay.name} href={stay.url} target="_blank" rel="noopener noreferrer" className="bg-white p-6 rounded-xl border border-stone-100 hover:border-stone-300 hover:shadow-sm transition-all group block">
+              <div className="flex items-start justify-between mb-3">
+                <span className="text-3xl">{stay.emoji}</span>
+                <span className="text-stone-300 group-hover:text-stone-500 transition-colors text-sm">↗</span>
+              </div>
               <p className="font-body text-sm font-semibold text-stone-800 mb-3">{stay.name}</p>
               <div className="flex flex-wrap gap-1.5">
                 {stay.tags.map(tag => (
                   <span key={tag} className="font-body text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full border border-stone-200 text-stone-400">{tag}</span>
                 ))}
               </div>
-            </div>
+            </a>
           ))}
         </div>
         <div className="flex gap-3 bg-amber-50 border-l-4 border-[#C4873A] p-4 rounded-r-lg">
@@ -229,26 +247,29 @@ const sections = [
     content: () => (
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {[
-          { name: 'Le Patio', category: 'Fine Dining', emoji: '🍽️', what: 'Upscale European/African fusion in a gorgeous, romantic setting.' },
-          { name: 'Nomads', category: 'Brunch & Dinner', emoji: '✨', what: 'Trendy aesthetics and a fantastic menu — perfect for brunch or a stylish dinner.' },
-          { name: 'Le Hangar', category: 'Outdoor Bar', emoji: '🌙', what: 'Stylish outdoor evening favorite with a lively, cool atmosphere.' },
-          { name: 'La Sunset Beach Lounge', category: 'Beach & Drinks', emoji: '🌅', what: 'Chill spot for drinks, meals, and seaside relaxing.' },
-          { name: 'Lomé Street Kitchen', category: 'Street Food', emoji: '🥘', what: 'The go-to spot for authentic, elevated street food flavors.' },
-          { name: 'Songhai', category: 'Local Cuisine', emoji: '🫙', what: 'Delicious, hearty local and regional delicacies done right.' },
-          { name: 'Ci Gusta', category: 'Italian', emoji: '🍕', what: 'Premium pizza, pasta, and gelato — the Italian fix in Lomé.' },
-          { name: 'Mr. Burger', category: 'Burgers', emoji: '🍔', what: "Widely known for serving up Togo's best burger." },
-          { name: 'Picasso Togo', category: 'Fusion', emoji: '🎨', what: 'Artful ambiance paired with good fusion food.' },
-          { name: 'La Huqqa', category: 'Lounge', emoji: '💨', what: 'Food, drinks, hookah, and a solid lounge vibe all in one.' },
-          { name: 'ZanziBar Lomé', category: 'Cocktail Bar', emoji: '🍹', what: 'Widely recommended, laid-back spot for premium cocktails.' },
+          { name: 'Le Patio', category: 'Fine Dining', emoji: '🍽️', what: 'Upscale European/African fusion in a gorgeous, romantic setting.', url: 'https://www.google.com/maps/search/Le+Patio+Lome+Togo' },
+          { name: 'Nomads', category: 'Brunch & Dinner', emoji: '✨', what: 'Trendy aesthetics and a fantastic menu — perfect for brunch or a stylish dinner.', url: 'https://www.google.com/maps/search/Nomads+Hotel+Lome+Togo' },
+          { name: 'Le Hangar', category: 'Outdoor Bar', emoji: '🌙', what: 'Stylish outdoor evening favorite with a lively, cool atmosphere.', url: 'https://www.google.com/maps/search/Le+Hangar+Lome+Togo' },
+          { name: 'La Sunset Beach Lounge', category: 'Beach & Drinks', emoji: '🌅', what: 'Chill spot for drinks, meals, and seaside relaxing.', url: 'https://www.google.com/maps/search/La+Sunset+Beach+Lounge+Lome+Togo' },
+          { name: 'Lomé Street Kitchen', category: 'Street Food', emoji: '🥘', what: 'The go-to spot for authentic, elevated street food flavors.', url: 'https://www.google.com/maps/search/Lome+Street+Kitchen+Togo' },
+          { name: 'Songhai', category: 'Local Cuisine', emoji: '🫙', what: 'Delicious, hearty local and regional delicacies done right.', url: 'https://www.google.com/maps/search/Songhai+Lome+Togo' },
+          { name: 'Ci Gusta', category: 'Italian', emoji: '🍕', what: 'Premium pizza, pasta, and gelato — the Italian fix in Lomé.', url: 'https://www.google.com/maps/search/Ci+Gusta+Lome+Togo' },
+          { name: 'Mr. Burger', category: 'Burgers', emoji: '🍔', what: "Widely known for serving up Togo's best burger.", url: 'https://www.google.com/maps/search/Mr+Burger+Lome+Togo' },
+          { name: 'Picasso Togo', category: 'Fusion', emoji: '🎨', what: 'Artful ambiance paired with good fusion food.', url: 'https://www.google.com/maps/search/Picasso+Togo+Lome' },
+          { name: 'La Huqqa', category: 'Lounge', emoji: '💨', what: 'Food, drinks, hookah, and a solid lounge vibe all in one.', url: 'https://www.google.com/maps/search/La+Huqqa+Lome+Togo' },
+          { name: 'ZanziBar Lomé', category: 'Cocktail Bar', emoji: '🍹', what: 'Widely recommended, laid-back spot for premium cocktails.', url: 'https://www.google.com/maps/search/ZanziBar+Lome+Togo' },
         ].map(spot => (
-          <div key={spot.name} className="bg-white/60 p-6 rounded-xl">
+          <a key={spot.name} href={spot.url} target="_blank" rel="noopener noreferrer" className="bg-white p-6 rounded-xl border border-stone-100 hover:border-stone-300 hover:shadow-sm transition-all group block">
             <div className="flex items-center justify-between mb-3">
               <span className="text-2xl">{spot.emoji}</span>
-              <span className="font-body text-[9px] uppercase tracking-widest text-stone-400">{spot.category}</span>
+              <div className="flex items-center gap-2">
+                <span className="font-body text-[9px] uppercase tracking-widest text-stone-400">{spot.category}</span>
+                <span className="text-stone-300 group-hover:text-stone-500 transition-colors text-sm">↗</span>
+              </div>
             </div>
             <p className="font-body text-sm font-semibold text-stone-800 mb-1">{spot.name}</p>
             <p className="font-body text-sm text-stone-500 leading-relaxed">{spot.what}</p>
-          </div>
+          </a>
         ))}
       </div>
     ),
@@ -261,21 +282,24 @@ const sections = [
     content: () => (
       <div className="grid md:grid-cols-2 gap-4">
         {[
-          { name: 'MAD Complexe Lomé', desc: 'The legendary Accra nightlife staple from East Legon has touched down in Lomé. Expect high energy, great music, and familiar vibes.', icon: '🎉', vibe: 'High Energy' },
-          { name: 'Hotel 2 Février Rooftop', desc: 'An iconic luxury location. Head here for classy, upscale drinks with a sweeping panoramic view of the entire city skyline.', icon: '🥂', vibe: 'Rooftop Views' },
-          { name: 'Oya Bar', desc: 'Stylish and lively for starting the night with excellent cocktails, cool crowds, and resident DJs.', icon: '🎵', vibe: 'Pre-Night Cocktails' },
-          { name: 'Le Galion', desc: 'A classic, reliable spot with a sophisticated crowd, perfect for drinks, mingling, and frequent live music.', icon: '🎸', vibe: 'Live Music' },
+          { name: 'MAD Complexe Lomé', desc: 'The legendary Accra nightlife staple from East Legon has touched down in Lomé. Expect high energy, great music, and familiar vibes.', icon: '🎉', vibe: 'High Energy', url: 'https://www.google.com/maps/search/MAD+Complexe+Lome+Togo' },
+          { name: 'Hotel 2 Février Rooftop', desc: 'An iconic luxury location. Head here for classy, upscale drinks with a sweeping panoramic view of the entire city skyline.', icon: '🥂', vibe: 'Rooftop Views', url: 'https://www.google.com/maps/search/Hotel+2+Fevrier+Lome+Togo' },
+          { name: 'Oya Bar', desc: 'Stylish and lively for starting the night with excellent cocktails, cool crowds, and resident DJs.', icon: '🎵', vibe: 'Pre-Night Cocktails', url: 'https://www.google.com/maps/search/Oya+Bar+Lome+Togo' },
+          { name: 'Le Galion', desc: 'A classic, reliable spot with a sophisticated crowd, perfect for drinks, mingling, and frequent live music.', icon: '🎸', vibe: 'Live Music', url: 'https://www.google.com/maps/search/Le+Galion+Lome+Togo' },
         ].map(venue => (
-          <div key={venue.name} className="bg-white/60 p-6 rounded-xl flex flex-col gap-3">
+          <a key={venue.name} href={venue.url} target="_blank" rel="noopener noreferrer" className="bg-white p-6 rounded-xl border border-stone-100 hover:border-stone-300 hover:shadow-sm transition-all group flex flex-col gap-3">
             <div className="flex items-start justify-between">
               <span className="text-3xl">{venue.icon}</span>
-              <span className="font-body text-[9px] uppercase tracking-widest text-stone-400">{venue.vibe}</span>
+              <div className="flex items-center gap-2">
+                <span className="font-body text-[9px] uppercase tracking-widest text-stone-400">{venue.vibe}</span>
+                <span className="text-stone-300 group-hover:text-stone-500 transition-colors text-sm">↗</span>
+              </div>
             </div>
             <div>
               <p className="font-body text-sm font-semibold text-stone-800 mb-1">{venue.name}</p>
               <p className="font-body text-sm text-stone-500 leading-relaxed">{venue.desc}</p>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     ),

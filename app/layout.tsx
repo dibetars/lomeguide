@@ -32,11 +32,11 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Lomé Guide — The Quick & Dirty Guide from Accra',
+  title: 'lome.stay — Your Guide to Lomé from Accra',
   description:
     'Your complete curated travel guide to Lomé, Togo from Accra, Ghana. Transportation, visas, currency, food, nightlife and itineraries.',
   openGraph: {
-    title: 'Lomé Guide — The Quick & Dirty Guide from Accra',
+    title: 'lome.stay — Your Guide to Lomé from Accra',
     description: 'Incredible food, French-West African vibes, and great beaches.',
     type: 'website',
   },
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${bodoni.variable} ${syne.variable} ${cormorant.variable} ${inter.variable}`}>
-      <body className="bg-[#EDE3CF] text-[#1A1508]">{children}</body>
+      <body className="bg-[#1A1508] text-[#1A1508]">{children}</body>
     </html>
   )
 }

@@ -24,15 +24,24 @@ const bands = [
 ]
 
 export default function DiagonalMarquee() {
-  const FONT_SIZE = 'clamp(5rem, 11vw, 9rem)'
-  const PY = '12px'
+  const FONT_SIZE = 'clamp(1.1rem, 2.2vw, 1.8rem)'
+  const PY = '14px'
 
   return (
-    <section
-      className="relative overflow-hidden bg-[#EDE3CF]"
-      style={{ paddingTop: '60px', paddingBottom: '60px' }}
+    // Outer wrapper clips horizontal overflow only — padding gives rotated
+    // bands room so they aren't cut at top/bottom edges
+    <div
+      style={{
+        position: 'relative',
+        zIndex: 10,
+        marginTop: '-220px',
+        marginBottom: '-30px',
+        overflow: 'hidden',
+        paddingTop: '220px',
+        paddingBottom: '30px',
+      }}
     >
-      <div className="flex flex-col" style={{ gap: '-1px' }}>
+      <div className="flex flex-col">
         {bands.map((band) => {
           const repeated = [
             ...band.words,
@@ -45,13 +54,12 @@ export default function DiagonalMarquee() {
           return (
             <div
               key={band.id}
-              className="overflow-hidden"
               style={{
                 backgroundColor: band.bg,
-                transform: 'rotate(-3.5deg)',
+                transform: 'rotate(-2deg)',
                 marginLeft: '-10%',
                 width: '120%',
-                marginBottom: '-18px',
+                marginBottom: '-4px',
               }}
             >
               <div
@@ -84,6 +92,6 @@ export default function DiagonalMarquee() {
           )
         })}
       </div>
-    </section>
+    </div>
   )
 }

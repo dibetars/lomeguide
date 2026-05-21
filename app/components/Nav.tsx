@@ -32,7 +32,7 @@ export default function Nav() {
       >
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between relative">
 
-          {/* Left: dot-grid button + Menu label */}
+          {/* Left: Togo map icon button + Menu label */}
           <button
             onClick={() => setOpen(!open)}
             className="flex items-center gap-3 group"
@@ -43,16 +43,35 @@ export default function Nav() {
                 overHero ? 'bg-white' : 'bg-[#1A1508]'
               }`}
             >
-              <div className="grid grid-cols-2 gap-[5px]">
-                {[...Array(4)].map((_, i) => (
-                  <span
-                    key={i}
-                    className={`block w-1.5 h-1.5 rounded-full transition-colors duration-500 ${
-                      overHero ? 'bg-[#1A1508]' : 'bg-[#EDE3CF]'
-                    }`}
-                  />
-                ))}
-              </div>
+              {/* Togo country outline SVG */}
+              <svg
+                viewBox="0 0 60 100"
+                className="w-5 h-5"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d={`M30 4 C36 4 44 7 48 13 C52 19 54 26 53 34
+                      C52 40 50 44 51 50 C52 56 55 60 54 66
+                      C53 72 49 77 45 81 C41 85 36 88 32 92
+                      C30 94 28 96 26 94 C22 90 18 85 15 80
+                      C11 74 8 68 7 62 C6 56 8 50 9 44
+                      C10 38 10 32 8 26 C6 20 8 13 13 9
+                      C18 5 24 4 30 4 Z`}
+                  className={`transition-colors duration-500 ${
+                    overHero ? 'fill-[#1A1508]' : 'fill-[#EDE3CF]'
+                  }`}
+                />
+                {/* Star dot for Lomé (southern coast) */}
+                <circle
+                  cx="28"
+                  cy="78"
+                  r="4"
+                  className={`transition-colors duration-500 ${
+                    overHero ? 'fill-white' : 'fill-[#D4483C]'
+                  }`}
+                />
+              </svg>
             </div>
             <span
               className={`font-body text-sm font-medium tracking-wide transition-colors duration-500 ${
@@ -70,7 +89,7 @@ export default function Nav() {
               overHero ? 'text-white' : 'text-[#1A1508]'
             }`}
           >
-            🇹🇬 Lomé Guide
+            lome.stay
           </a>
 
           {/* Right: pill + circle arrow */}
