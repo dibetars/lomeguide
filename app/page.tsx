@@ -10,6 +10,7 @@ import FoodSection from './components/FoodSection'
 import NightlifeSection from './components/NightlifeSection'
 import ItinerariesSection from './components/ItinerariesSection'
 import GozemSection from './components/GozemSection'
+import DiagonalMarquee from './components/DiagonalMarquee'
 import Footer from './components/Footer'
 
 export default function Home() {
@@ -51,6 +52,7 @@ export default function Home() {
           ]}
         />
         <FoodSection />
+        <DiagonalMarquee />
         <NightlifeSection />
         <ItinerariesSection />
         <GozemSection />
