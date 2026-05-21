@@ -96,7 +96,7 @@ export default function Nav() {
           <div className="flex items-center gap-2">
             <a
               href="#getting-there"
-              className={`px-6 py-2.5 rounded-full font-body text-sm font-medium transition-colors duration-500 whitespace-nowrap ${
+              className={`hidden md:block px-6 py-2.5 rounded-full font-body text-sm font-medium transition-colors duration-500 whitespace-nowrap ${
                 overHero
                   ? 'bg-white text-[#1A1508] hover:bg-[#EDE3CF]'
                   : 'bg-[#1A1508] text-[#EDE3CF] hover:bg-[#006A4E]'
