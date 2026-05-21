@@ -28,7 +28,7 @@ export default function GozemSection() {
     <section id="getting-around" className="py-20 md:py-32 px-6 bg-[#FAF7F2]">
       <div className="max-w-5xl mx-auto">
         <SectionHeader
-          number="09 — Getting Around"
+          number="05 — Getting Around"
           title="Download Gozem"
           subtitle="Safe, reliable, and affordable transport around Lomé. Think of it as the Uber of Francophone West Africa."
         />

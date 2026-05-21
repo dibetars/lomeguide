@@ -28,7 +28,7 @@ export default function BorderTips() {
     <section id="border-tips" className="py-20 md:py-32 px-6 bg-[#FAF7F2]">
       <div className="max-w-5xl mx-auto">
         <SectionHeader
-          number="04 — Border Tips"
+          number="03 — Border Tips"
           title="Stay Sharp at the Gates"
           subtitle="Crossing a land border can feel chaotic if you aren't prepared. Keep these safety and sanity rules in mind."
         />

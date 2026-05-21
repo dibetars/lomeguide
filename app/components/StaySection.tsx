@@ -65,7 +65,7 @@ export default function StaySection() {
           {/* Header */}
           <div className="max-w-4xl mx-auto px-6 md:px-10 mb-2">
             <SectionHeader
-              number="05 — Where to Stay"
+              number="06 — Where to Stay"
               title="A Bed for Every Budget"
               subtitle="From chic beachfront clubs to affordable Airbnbs, Lomé has great options across every price range."
             />

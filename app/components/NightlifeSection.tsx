@@ -35,7 +35,7 @@ export default function NightlifeSection() {
       <div className="max-w-5xl mx-auto">
         <div className="mb-12 md:mb-16">
           <p className="font-body text-[10px] uppercase tracking-[0.5em] text-[#FFCB00] mb-4">
-            07 — Nightlife
+            08 — Nightlife
           </p>
           <h2
             className="font-display font-extrabold uppercase text-white leading-none mb-5"

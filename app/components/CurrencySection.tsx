@@ -26,7 +26,7 @@ export default function CurrencySection() {
     <section id="currency" className="py-20 md:py-32 px-6 bg-white">
       <div className="max-w-5xl mx-auto">
         <SectionHeader
-          number="03 — Currency & Money"
+          number="04 — Currency & Money"
           title="GHS to CFA"
           subtitle="Togo uses the West African CFA Franc (XOF) — a completely different currency from the Ghanaian Cedi. Togo is largely cash-dominant, so handling your money correctly is a major key."
         />

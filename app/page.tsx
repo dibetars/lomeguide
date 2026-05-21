@@ -33,10 +33,11 @@ export default function Home() {
             '🎵 Music',
           ]}
         />
-        <GettingThere />
         <VisaSection />
-        <CurrencySection />
+        <GettingThere />
         <BorderTips />
+        <CurrencySection />
+        <GozemSection />
         <StaySection />
         <Marquee
           dark={false}
@@ -55,7 +56,6 @@ export default function Home() {
         <DiagonalMarquee />
         <NightlifeSection />
         <ItinerariesSection />
-        <GozemSection />
       </main>
       <Footer />
     </>

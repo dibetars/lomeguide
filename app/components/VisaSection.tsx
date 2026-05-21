@@ -5,7 +5,7 @@ export default function VisaSection() {
     <section id="visa" className="py-20 md:py-32 px-6 bg-[#FAF7F2]">
       <div className="max-w-5xl mx-auto">
         <SectionHeader
-          number="02 — Visa & Entry"
+          number="01 — Visa & Entry"
           title="Know Your Passport"
           subtitle="Immigration procedures at Aflao depend on the passport you hold. Handle all digital requirements at least 24 hours before you travel."
         />

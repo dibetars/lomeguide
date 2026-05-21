@@ -19,7 +19,7 @@ export default function FoodSection() {
     <section id="eat" className="py-20 md:py-32 px-6 bg-[#FAF7F2]">
       <div className="max-w-5xl mx-auto">
         <SectionHeader
-          number="06 — Where to Eat & Drink"
+          number="07 — Where to Eat & Drink"
           title="The Food Scene is Elite"
           subtitle="A mix of French culinary standards, fresh seafood, local Togolese flavors, and international staples."
         />

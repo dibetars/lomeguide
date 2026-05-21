@@ -45,7 +45,7 @@ export default function ItinerariesSection() {
     <section id="itineraries" className="py-20 md:py-32 px-6 bg-white">
       <div className="max-w-5xl mx-auto">
         <SectionHeader
-          number="08 — Curated Itineraries"
+          number="09 — Curated Itineraries"
           title="Pick Your Weekend"
           subtitle="Three curated experiences for different travel moods. Mix and match as you see fit."
         />

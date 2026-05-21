@@ -5,7 +5,7 @@ export default function GettingThere() {
     <section id="getting-there" className="py-20 md:py-32 px-6 bg-white">
       <div className="max-w-5xl mx-auto">
         <SectionHeader
-          number="01 — Getting There"
+          number="02 — Getting There"
           title="Accra to the Border"
           subtitle="All public transport leaves from Tudu in central Accra, dropping you directly at the Aflao border. Walk through immigration and step right into Lomé."
         />
