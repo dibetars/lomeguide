@@ -7,6 +7,7 @@ const config: Config = {
       fontFamily: {
         display: ['var(--font-syne)', 'system-ui', 'sans-serif'],
         serif: ['var(--font-cormorant)', 'Georgia', 'serif'],
+        hero: ['var(--font-bodoni)', 'Georgia', 'serif'],
         body: ['var(--font-inter)', 'system-ui', 'sans-serif'],
       },
       animation: {

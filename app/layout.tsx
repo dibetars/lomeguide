@@ -1,6 +1,14 @@
 import type { Metadata } from 'next'
-import { Syne, Cormorant_Garamond, Inter } from 'next/font/google'
+import { Syne, Cormorant_Garamond, Inter, Bodoni_Moda } from 'next/font/google'
 import './globals.css'
+
+const bodoni = Bodoni_Moda({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  style: ['normal', 'italic'],
+  variable: '--font-bodoni',
+  display: 'swap',
+})
 
 const syne = Syne({
   subsets: ['latin'],
@@ -36,7 +44,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${syne.variable} ${cormorant.variable} ${inter.variable}`}>
+    <html lang="en" className={`${bodoni.variable} ${syne.variable} ${cormorant.variable} ${inter.variable}`}>
       <body className="bg-[#EDE3CF] text-[#1A1508]">{children}</body>
     </html>
   )

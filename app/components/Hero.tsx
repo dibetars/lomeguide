@@ -1,99 +1,97 @@
-const floaters = [
-  { emoji: '🇹🇬', style: { top: '18%', left: '6%', transform: 'rotate(-12deg)', fontSize: '3.5rem' } },
-  { emoji: '🏖️', style: { top: '28%', right: '7%', transform: 'rotate(8deg)', fontSize: '3rem' } },
-  { emoji: '✈️', style: { top: '52%', left: '4%', transform: 'rotate(-22deg)', fontSize: '2.2rem' } },
-  { emoji: '🌴', style: { top: '62%', right: '5%', transform: 'rotate(14deg)', fontSize: '2.8rem' } },
-  { emoji: '🍽️', style: { top: '44%', right: '13%', transform: 'rotate(-6deg)', fontSize: '2rem' } },
-  { emoji: '🥂', style: { top: '20%', right: '20%', transform: 'rotate(18deg)', fontSize: '1.8rem' } },
-  { emoji: '🛵', style: { top: '70%', left: '10%', transform: 'rotate(5deg)', fontSize: '2rem' } },
-]
-
 export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 pb-12 overflow-hidden"
+      className="relative min-h-screen flex flex-col overflow-hidden"
+      style={{
+        background:
+          'linear-gradient(160deg, #0A1F14 0%, #0C1820 40%, #060D18 70%, #020609 100%)',
+      }}
     >
-      {/* Floating sticker decorations */}
-      {floaters.map((f, i) => (
-        <span
-          key={i}
-          className="absolute hidden lg:block select-none pointer-events-none opacity-80"
-          style={f.style}
-        >
-          {f.emoji}
-        </span>
-      ))}
+      {/* Togo-green glow — right side */}
+      <div
+        className="absolute inset-y-0 right-0 w-1/2 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse at 80% 40%, rgba(0,106,78,0.25) 0%, transparent 65%)',
+        }}
+      />
 
-      {/* Eyebrow label */}
-      <p className="font-body text-[10px] uppercase tracking-[0.5em] text-[#006A4E] mb-8">
-        Accra → Lomé · Your Complete Weekend Guide
-      </p>
+      {/* Red glow — bottom left */}
+      <div
+        className="absolute bottom-0 left-0 w-1/3 h-1/2 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse at 20% 80%, rgba(212,72,60,0.15) 0%, transparent 60%)',
+        }}
+      />
 
-      {/* Giant stacked headline */}
-      <div className="leading-none mb-8 select-none">
-        <div
-          className="font-display font-extrabold uppercase text-[#1A1508] block"
-          style={{ fontSize: 'clamp(3.5rem, 13vw, 9.5rem)' }}
-        >
-          The Quick
-        </div>
-        <div
-          className="font-serif italic font-light text-[#006A4E] block"
-          style={{ fontSize: 'clamp(3rem, 11vw, 8rem)' }}
-        >
-          &amp; Dirty
-        </div>
-        <div
-          className="font-display font-extrabold uppercase text-[#1A1508] block"
-          style={{ fontSize: 'clamp(3.5rem, 13vw, 9.5rem)' }}
-        >
-          Guide to
-        </div>
-        <div
-          className="font-display font-extrabold uppercase text-[#D4483C] block"
-          style={{ fontSize: 'clamp(3.5rem, 13vw, 9.5rem)' }}
-        >
-          Lomé
-        </div>
+      {/* Large watermark flag */}
+      <div
+        className="absolute right-[8%] top-1/2 -translate-y-1/2 select-none pointer-events-none opacity-[0.06] hidden lg:block"
+        style={{ fontSize: '28rem', lineHeight: 1 }}
+        aria-hidden
+      >
+        🇹🇬
       </div>
 
-      {/* Tagline */}
-      <p className="font-body text-[#1A1508]/60 max-w-sm text-base leading-relaxed mb-10">
-        One of the easiest, most vibrant weekend getaways from Ghana — incredible food, a
-        laid-back French-West African vibe, and great beaches.
-      </p>
+      {/* Content wrapper — fills full height */}
+      <div className="relative flex-1 flex flex-col max-w-7xl mx-auto w-full px-8 md:px-12">
 
-      {/* CTA buttons */}
-      <div className="flex flex-wrap gap-4 justify-center mb-14">
-        <a
-          href="#getting-there"
-          className="bg-[#1A1508] text-[#EDE3CF] px-10 py-4 font-display text-xs font-bold uppercase tracking-widest hover:bg-[#006A4E] transition-colors"
-        >
-          Plan Your Trip
-        </a>
-        <a
-          href="#eat"
-          className="border-2 border-[#1A1508] text-[#1A1508] px-10 py-4 font-display text-xs font-bold uppercase tracking-widest hover:bg-[#1A1508] hover:text-[#EDE3CF] transition-all"
-        >
-          Eat &amp; Drink
-        </a>
-      </div>
+        {/* Top eyebrow — sits below the nav */}
+        <p className="pt-28 font-body text-[10px] uppercase tracking-[0.5em] text-white/30">
+          Accra → Lomé · The Complete Weekend Guide
+        </p>
 
-      {/* Stats row */}
-      <div className="grid grid-cols-3 gap-8 md:gap-20 border-t-2 border-[#1A1508]/10 pt-8 max-w-lg w-full">
-        {[
-          { value: '80 GHS', label: 'Budget Bus' },
-          { value: '30 Days', label: 'Visa-Free' },
-          { value: '~47 XOF', label: 'Per 1 GHS' },
-        ].map((s) => (
-          <div key={s.label}>
-            <p className="font-display text-xl md:text-2xl font-bold text-[#1A1508]">{s.value}</p>
-            <p className="font-body text-[10px] text-[#1A1508]/40 uppercase tracking-widest mt-1">
-              {s.label}
-            </p>
+        {/* Push headline to the bottom */}
+        <div className="flex-1 flex flex-col justify-end pb-14 md:pb-20">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
+
+            {/* Left: big Bodoni italic headline */}
+            <h1
+              className="font-hero italic font-black text-white leading-[0.88]"
+              style={{ fontSize: 'clamp(3.8rem, 9vw, 8.5rem)' }}
+            >
+              Live the Lomé<br />
+              you&apos;ve only<br />
+              <span style={{ color: '#FFCB00' }}>heard about</span>
+            </h1>
+
+            {/* Right: subtext + pill CTA */}
+            <div className="lg:mb-2 max-w-xs">
+              <p className="font-body text-white/55 text-base leading-relaxed mb-7">
+                Created for people who dream of West Africa — and want to live it,
+                not just visit.
+              </p>
+
+              <a
+                href="#getting-there"
+                className="inline-flex items-center gap-2 bg-white text-[#1A1508] pl-6 pr-1.5 py-1.5 rounded-full font-body text-sm font-medium hover:bg-[#EDE3CF] transition-colors"
+              >
+                Plan Your Trip
+                <span className="w-8 h-8 bg-[#D4483C] rounded-full flex items-center justify-center text-white font-bold text-base flex-shrink-0">
+                  ↗
+                </span>
+              </a>
+            </div>
           </div>
-        ))}
+
+          {/* Stats row */}
+          <div className="grid grid-cols-3 gap-6 md:gap-16 border-t border-white/10 pt-8 mt-12 max-w-lg">
+            {[
+              { value: '80 GHS', label: 'Budget Bus' },
+              { value: '30 Days', label: 'Visa-Free' },
+              { value: '~47 XOF', label: 'Per 1 GHS' },
+            ].map((s) => (
+              <div key={s.label}>
+                <p className="font-display font-bold text-xl md:text-2xl text-white">{s.value}</p>
+                <p className="font-body text-[10px] text-white/30 uppercase tracking-widest mt-1">
+                  {s.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )
