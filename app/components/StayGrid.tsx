@@ -319,7 +319,7 @@ export default function StayGrid() {
                     min={minCheckin}
                     value={checkin}
                     onChange={e => onCheckin(e.target.value)}
-                    className="w-full border border-stone-300 bg-white rounded-lg px-3 py-3 font-body text-sm text-stone-800 focus:outline-none focus:border-[#006A4E] focus:ring-1 focus:ring-[#006A4E]"
+                    className="w-full border border-stone-300 bg-white rounded-lg px-3 py-3 font-body text-base sm:text-sm text-stone-800 focus:outline-none focus:border-[#006A4E] focus:ring-1 focus:ring-[#006A4E]"
                   />
                 </div>
                 <div>
@@ -336,7 +336,7 @@ export default function StayGrid() {
                     min={minCheckout}
                     value={checkout}
                     onChange={e => setCheckout(e.target.value)}
-                    className="w-full border border-stone-300 bg-white rounded-lg px-3 py-3 font-body text-sm text-stone-800 focus:outline-none focus:border-[#006A4E] focus:ring-1 focus:ring-[#006A4E]"
+                    className="w-full border border-stone-300 bg-white rounded-lg px-3 py-3 font-body text-base sm:text-sm text-stone-800 focus:outline-none focus:border-[#006A4E] focus:ring-1 focus:ring-[#006A4E]"
                   />
                 </div>
               </div>

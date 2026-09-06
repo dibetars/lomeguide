@@ -17,20 +17,20 @@ export default function Nav() {
   const [overHero, setOverHero] = useState(true)
 
   useEffect(() => {
-    const handler = () => setOverHero(window.scrollY < window.innerHeight * 0.85)
+    const handler = () => setOverHero(window.scrollY < window.innerHeight * 0.35)
     window.addEventListener('scroll', handler)
     return () => window.removeEventListener('scroll', handler)
   }, [])
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 transition-colors duration-500">
+    <nav className="fixed top-0 left-0 right-0 z-50 transition-colors duration-500 pt-[env(safe-area-inset-top)]">
       {/* Main bar */}
       <div
         className={`transition-colors duration-500 ${
           overHero ? 'bg-transparent' : 'bg-[#EDE3CF] shadow-sm'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 md:h-20 flex items-center justify-between relative">
 
           {/* Left: Togo map icon button + Menu label */}
           <button
@@ -74,7 +74,7 @@ export default function Nav() {
               </svg>
             </div>
             <span
-              className={`font-body text-sm font-medium tracking-wide transition-colors duration-500 ${
+              className={`hidden min-[380px]:inline font-body text-sm font-medium tracking-wide transition-colors duration-500 ${
                 overHero ? 'text-white' : 'text-[#1A1508]'
               }`}
             >
@@ -85,7 +85,7 @@ export default function Nav() {
           {/* Center: brand */}
           <a
             href="#hero"
-            className={`absolute left-1/2 -translate-x-1/2 font-display font-bold text-[13px] uppercase tracking-[0.25em] whitespace-nowrap transition-colors duration-500 ${
+            className={`absolute left-1/2 -translate-x-1/2 font-display font-bold text-[12px] sm:text-[13px] uppercase tracking-[0.14em] sm:tracking-[0.25em] whitespace-nowrap transition-colors duration-500 ${
               overHero ? 'text-white' : 'text-[#1A1508]'
             }`}
           >
@@ -118,7 +118,7 @@ export default function Nav() {
       {/* Dropdown menu */}
       {open && (
         <div
-          className={`border-t px-6 py-8 transition-colors duration-500 ${
+          className={`border-t px-4 sm:px-6 py-6 md:py-8 transition-colors duration-500 ${
             overHero
               ? 'bg-black/60 backdrop-blur-md border-white/10'
               : 'bg-[#EDE3CF] border-[#1A1508]/10'

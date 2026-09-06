@@ -17,7 +17,7 @@ const sections = [
     title: 'Know Your Passport',
     content: () => (
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="bg-white p-8 rounded-xl">
+        <div className="bg-white p-5 md:p-8 rounded-xl">
           <div className="flex items-center gap-3 mb-5">
             <span className="text-2xl">🌍</span>
             <div>
@@ -33,7 +33,7 @@ const sections = [
             <div className="flex gap-2 font-body text-sm text-stone-600"><span className="text-[#006A4E] flex-shrink-0">→</span>Print your travel slip and present it at the border</div>
           </div>
         </div>
-        <div className="bg-white p-8 rounded-xl">
+        <div className="bg-white p-5 md:p-8 rounded-xl">
           <div className="flex items-center gap-3 mb-5">
             <span className="text-2xl">🌐</span>
             <div>
@@ -66,7 +66,7 @@ const sections = [
     content: () => (
       <div className="space-y-6">
         <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-[#C4873A] text-white p-8 rounded-xl flex flex-col justify-between min-h-[200px]">
+          <div className="bg-[#C4873A] text-white p-5 md:p-8 rounded-xl flex flex-col justify-between min-h-[200px]">
             <div>
               <p className="font-body text-[10px] uppercase tracking-widest text-white/60 mb-3">Budget Option</p>
               <p className="font-display font-extrabold text-white leading-none" style={{ fontSize: '4rem' }}>80</p>
@@ -77,7 +77,7 @@ const sections = [
               <p className="font-body text-sm text-white/75 leading-relaxed">Cheap and cheerful, but you&apos;ll wait for the bus to fill up before departing Tudu.</p>
             </div>
           </div>
-          <div className="bg-[#006A4E] text-white p-8 rounded-xl flex flex-col justify-between min-h-[200px]">
+          <div className="bg-[#006A4E] text-white p-5 md:p-8 rounded-xl flex flex-col justify-between min-h-[200px]">
             <div>
               <p className="font-body text-[10px] uppercase tracking-widest text-white/60 mb-3">Comfort Option</p>
               <p className="font-display font-extrabold text-white leading-none" style={{ fontSize: '4rem' }}>200</p>
@@ -168,7 +168,7 @@ const sections = [
             </div>
           ))}
         </div>
-        <div className="bg-[#006A4E] text-white p-8 rounded-xl">
+        <div className="bg-[#006A4E] text-white p-5 md:p-8 rounded-xl">
           <p className="font-body text-[10px] uppercase tracking-widest text-[#FFCB00] mb-3">Pro Tip</p>
           <p className="font-display text-2xl font-light italic mb-4">Download before you cross</p>
           <p className="font-body text-sm text-white/80 leading-relaxed mb-6">Set up the Gozem app using your Ghanaian phone number <strong className="text-white">before</strong> you cross the border — so you&apos;re ready to request a ride the second you step out of immigration.</p>
@@ -338,10 +338,10 @@ export default function GuideAccordion() {
               onClick={() => setOpenIndex(isOpen ? null : i)}
             >
               <div
-                className="flex items-center justify-between px-6 md:px-12 py-6 md:py-8 transition-colors duration-300 border-b border-white/5"
+                className="flex items-center justify-between gap-3 px-4 sm:px-6 md:px-12 py-5 md:py-8 transition-colors duration-300 border-b border-white/5 min-h-[3.5rem]"
                 style={{ backgroundColor: isOpen ? color : 'transparent' }}
               >
-                <div className="flex items-center gap-6 md:gap-10">
+                <div className="flex items-center gap-3 md:gap-10 min-w-0">
                   {/* Number */}
                   <span
                     className="font-body text-[10px] uppercase tracking-[0.4em] flex-shrink-0 transition-colors duration-300"
@@ -352,7 +352,7 @@ export default function GuideAccordion() {
 
                   {/* Title */}
                   <h2
-                    className="font-display font-extrabold uppercase leading-none transition-colors duration-300"
+                    className="font-display font-extrabold uppercase leading-[1.05] transition-colors duration-300 min-w-0"
                     style={{
                       fontSize: 'clamp(1.4rem, 3.5vw, 2.8rem)',
                       color: isOpen ? textColor : 'rgba(255,255,255,0.55)',
@@ -398,7 +398,7 @@ export default function GuideAccordion() {
               style={{ maxHeight: isOpen ? '2800px' : '0px' }}
             >
               <div
-                className="px-6 md:px-12 py-10 md:py-14"
+                className="px-4 sm:px-6 md:px-12 py-8 md:py-14"
                 style={{ backgroundColor: `${color}18` }}
               >
                 {/* Sub-header */}

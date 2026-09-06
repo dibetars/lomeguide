@@ -31,15 +31,7 @@ export default function DiagonalMarquee() {
     // Outer wrapper clips horizontal overflow only — padding gives rotated
     // bands room so they aren't cut at top/bottom edges
     <div
-      style={{
-        position: 'relative',
-        zIndex: 10,
-        marginTop: '-220px',
-        marginBottom: '-30px',
-        overflow: 'hidden',
-        paddingTop: '220px',
-        paddingBottom: '30px',
-      }}
+      className="relative z-10 pointer-events-none overflow-hidden -mt-32 pt-32 pb-6 -mb-4 md:-mt-[220px] md:pt-[220px] md:pb-[30px] md:-mb-[30px]"
     >
       <div className="flex flex-col">
         {bands.map((band) => {

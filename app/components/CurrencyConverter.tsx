@@ -22,7 +22,7 @@ export default function CurrencyConverter() {
         Currency Converter — to CFA Franc (XOF)
       </p>
 
-      <div className="flex gap-3 mb-6">
+      <div className="flex flex-col sm:flex-row gap-3 mb-6">
         {/* Amount input */}
         <div className="flex-1">
           <label className="font-body text-[10px] uppercase tracking-widest text-stone-400 block mb-1.5">
@@ -39,14 +39,14 @@ export default function CurrencyConverter() {
         </div>
 
         {/* Currency selector */}
-        <div className="w-44">
+        <div className="w-full sm:w-44">
           <label className="font-body text-[10px] uppercase tracking-widest text-stone-400 block mb-1.5">
             Currency
           </label>
           <select
             value={fromCode}
             onChange={e => setFromCode(e.target.value)}
-            className="w-full border border-stone-200 rounded-lg px-4 py-3 font-body text-sm text-stone-800 focus:outline-none focus:border-[#006A4E] focus:ring-1 focus:ring-[#006A4E] transition-colors bg-white appearance-none cursor-pointer"
+            className="w-full border border-stone-200 rounded-lg px-4 py-3 font-body text-base text-stone-800 focus:outline-none focus:border-[#006A4E] focus:ring-1 focus:ring-[#006A4E] transition-colors bg-white appearance-none cursor-pointer"
           >
             {currencies.map(c => (
               <option key={c.code} value={c.code}>

@@ -1,3 +1,5 @@
+import PlanTripButton from './PlanTripButton'
+
 export default function Hero() {
   return (
     <section
@@ -49,17 +51,17 @@ export default function Hero() {
 
       {/* ── Content ── */}
       <div
-        className="relative flex-1 flex flex-col max-w-7xl mx-auto w-full px-8 md:px-12"
+        className="relative flex-1 flex flex-col max-w-7xl mx-auto w-full px-5 md:px-12"
         style={{ zIndex: 3 }}
       >
-        {/* Push to bottom */}
-        <div className="flex-1 flex flex-col justify-end pb-14 md:pb-20">
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
+        {/* Push to bottom — extra mobile pad so the marquee does not cover the CTA */}
+        <div className="flex-1 flex flex-col justify-end pb-36 sm:pb-28 md:pb-20">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-10">
 
             {/* Left: headline */}
             <h1
               className="font-hero italic font-black text-white leading-[0.88]"
-              style={{ fontSize: 'clamp(3.8rem, 9vw, 8.5rem)' }}
+              style={{ fontSize: 'clamp(2.7rem, 11vw, 8.5rem)' }}
             >
               Live the Lomé<br />
               you&apos;ve only<br />
@@ -68,19 +70,11 @@ export default function Hero() {
 
             {/* Right: subtext + pill CTA */}
             <div className="lg:mb-2 max-w-xs">
-              <p className="font-body text-white/60 text-base leading-relaxed mb-7">
+              <p className="font-body text-white/60 text-sm sm:text-base leading-relaxed mb-5 sm:mb-7">
                 Created for people who dream of West Africa — and want to live it,
                 not just visit.
               </p>
-              <a
-                href="#getting-there"
-                className="inline-flex items-center gap-2 bg-white text-[#1A1508] pl-6 pr-1.5 py-1.5 rounded-full font-body text-sm font-medium hover:bg-[#EDE3CF] transition-colors"
-              >
-                Plan Your Trip
-                <span className="w-8 h-8 bg-[#D4483C] rounded-full flex items-center justify-center text-white font-bold text-base flex-shrink-0">
-                  ↗
-                </span>
-              </a>
+              <PlanTripButton />
             </div>
           </div>
 
