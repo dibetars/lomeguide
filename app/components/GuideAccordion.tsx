@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import CurrencyConverter from './CurrencyConverter'
+import StayGrid from './StayGrid'
 
 // ── Togo flag palette ──────────────────────────────────────────────────
 const FLAG = ['#006A4E', '#FFCB00', '#D4483C'] as const
@@ -41,12 +42,13 @@ const sections = [
             </div>
           </div>
           <span className="inline-block bg-stone-800 text-white font-body text-[10px] uppercase tracking-widest px-3 py-1 mb-4 rounded-full">E-Visa Required</span>
-          <p className="font-body text-sm text-stone-600 leading-relaxed mb-5">Cannot get a visa-on-arrival at the land border. Apply beforehand via the official government portal.</p>
+          <p className="font-body text-sm text-stone-600 leading-relaxed mb-5">Cannot get a visa-on-arrival at the land border. Apply beforehand via the official government portal. Some nationalities cannot complete everything online and may need to visit a Togolese embassy nearby — from Accra, that&apos;s the embassy in Ghana.</p>
           <div className="border-t border-stone-100 pt-5 space-y-3">
             <p className="font-body text-xs font-semibold text-stone-700 uppercase tracking-widest">Required</p>
             <div className="flex gap-2 font-body text-sm text-stone-600"><span className="text-stone-400 flex-shrink-0">→</span>Apply for E-Visa at <strong>voyage.gouv.tg</strong> before travel</div>
             <div className="flex gap-2 font-body text-sm text-stone-600"><span className="text-stone-400 flex-shrink-0">→</span>Print approval & present at Togolese checkpoint</div>
             <div className="flex gap-2 font-body text-sm text-stone-600"><span className="text-stone-400 flex-shrink-0">→</span>Fill out the white arrival form at the border</div>
+            <div className="flex gap-2 font-body text-sm text-stone-600"><span className="text-stone-400 flex-shrink-0">→</span>If the portal asks for an embassy appointment, book one nearby before you travel</div>
           </div>
         </div>
         <div className="md:col-span-2 flex gap-4 bg-red-50 border-l-4 border-[#D4483C] p-5 rounded-r-lg">
@@ -209,29 +211,7 @@ const sections = [
     title: 'A Bed for Every Budget',
     content: () => (
       <div className="space-y-4">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {[
-            { name: 'Marcelo Beach Club', tags: ['Top Pick', 'Beachfront'], emoji: '🏖️', url: 'https://maps.app.goo.gl/marcelo-beach-lome' },
-            { name: 'Nomads Hotel', tags: ['Top Pick', 'Lifestyle Vibe'], emoji: '✨', url: 'https://www.google.com/maps/search/Nomads+Hotel+Lome+Togo' },
-            { name: 'Pure Plage', tags: ['Beach Luxury', 'Private Beach'], emoji: '🌊', url: 'https://www.google.com/maps/search/Pure+Plage+Lome+Togo' },
-            { name: 'Le Patio', tags: ['Boutique', 'Central'], emoji: '🌿', url: 'https://www.google.com/maps/search/Le+Patio+Lome+Togo' },
-            { name: 'ONOMO Hotel Lomé', tags: ['Beachfront', 'Business'], emoji: '🏨', url: 'https://www.google.com/maps/search/ONOMO+Hotel+Lome+Togo' },
-            { name: 'Budget Airbnbs', tags: ['Best Value', 'From $10/night'], emoji: '🏠', url: 'https://www.airbnb.com/s/Lom%C3%A9--Togo' },
-          ].map(stay => (
-            <a key={stay.name} href={stay.url} target="_blank" rel="noopener noreferrer" className="bg-white p-6 rounded-xl border border-stone-100 hover:border-stone-300 hover:shadow-sm transition-all group block">
-              <div className="flex items-start justify-between mb-3">
-                <span className="text-3xl">{stay.emoji}</span>
-                <span className="text-stone-300 group-hover:text-stone-500 transition-colors text-sm">↗</span>
-              </div>
-              <p className="font-body text-sm font-semibold text-stone-800 mb-3">{stay.name}</p>
-              <div className="flex flex-wrap gap-1.5">
-                {stay.tags.map(tag => (
-                  <span key={tag} className="font-body text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full border border-stone-200 text-stone-400">{tag}</span>
-                ))}
-              </div>
-            </a>
-          ))}
-        </div>
+        <StayGrid />
         <div className="flex gap-3 bg-amber-50 border-l-4 border-[#C4873A] p-4 rounded-r-lg">
           <span className="text-lg flex-shrink-0">💡</span>
           <p className="font-body text-xs text-stone-600 leading-relaxed"><strong>Crucial Tip:</strong> When booking Airbnbs, always check if electricity (Cashpower) is included so you don&apos;t get surprised by an extra utility bill.</p>
@@ -248,6 +228,7 @@ const sections = [
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {[
           { name: 'Le Patio', category: 'Fine Dining', emoji: '🍽️', what: 'Upscale European/African fusion in a gorgeous, romantic setting.', url: 'https://www.google.com/maps/search/Le+Patio+Lome+Togo' },
+          { name: 'Chef Komi', category: 'Pâtisserie', emoji: '🍰', what: 'Artisan pastry, cakes, and ice cream — a local favorite for something sweet.', url: 'https://www.instagram.com/chef.komi/?hl=en' },
           { name: 'Nomads', category: 'Brunch & Dinner', emoji: '✨', what: 'Trendy aesthetics and a fantastic menu — perfect for brunch or a stylish dinner.', url: 'https://www.google.com/maps/search/Nomads+Hotel+Lome+Togo' },
           { name: 'Le Hangar', category: 'Outdoor Bar', emoji: '🌙', what: 'Stylish outdoor evening favorite with a lively, cool atmosphere.', url: 'https://www.google.com/maps/search/Le+Hangar+Lome+Togo' },
           { name: 'La Sunset Beach Lounge', category: 'Beach & Drinks', emoji: '🌅', what: 'Chill spot for drinks, meals, and seaside relaxing.', url: 'https://www.google.com/maps/search/La+Sunset+Beach+Lounge+Lome+Togo' },
@@ -310,11 +291,12 @@ const sections = [
     label: 'Curated Itineraries',
     title: 'Pick Your Weekend',
     content: () => (
-      <div className="grid md:grid-cols-3 gap-4">
+      <div className="grid md:grid-cols-2 gap-4">
         {[
           { number: '01', title: 'The Chill & Coastal Vibe', mood: '🌊 Beach & Chill', bg: '#006A4E', steps: ['Settle in at Marcelo Beach Club', 'Spend the afternoon on the beachfront', 'Dinner at Picasso Togo', 'Oceanfront nightcaps at ZanziBar'] },
           { number: '02', title: 'City Explorer & High Energy', mood: '🎉 Explore & Party', bg: '#D4483C', steps: ['Explore the Lomé town center', 'Quick lunch at Mr. Burger', 'Unwind at La Sunset Beach Lounge', 'Dinner & hookah at La Huqqa', 'Dive into nightlife at MAD Complexe'] },
           { number: '03', title: 'Ultimate Lifestyle Blend', mood: '✨ Luxury & Lifestyle', bg: '#C4873A', steps: ['Premium brunch at Le Patio', 'Hot afternoon at Pure Plage', 'Breezy open-air dinner at Le Hangar', 'Upscale drink on the 2 Février Rooftop'] },
+          { number: '04', title: 'Leave Lomé — Hills & Falls', mood: '🌿 Kpalimé Escape', bg: '#1A1508', steps: ['Leave Lomé for Kpalimé (~2 hrs inland)', 'Stay at a highly rated spot — Hôtel Parc Résidence, Hôtel Akwin, or a well-reviewed Airbnb', 'Hike Cascade de Kpimé', 'Cooler hills, local markets, overnight in Kpalimé', 'Return to Lomé the next day'] },
         ].map(exp => (
           <div key={exp.number} className="text-white p-6 rounded-xl flex flex-col justify-between min-h-[280px]" style={{ backgroundColor: exp.bg }}>
             <div>
@@ -413,7 +395,7 @@ export default function GuideAccordion() {
             {/* ── Expanded content ── */}
             <div
               className="overflow-hidden transition-all duration-500"
-              style={{ maxHeight: isOpen ? '2000px' : '0px' }}
+              style={{ maxHeight: isOpen ? '2800px' : '0px' }}
             >
               <div
                 className="px-6 md:px-12 py-10 md:py-14"
