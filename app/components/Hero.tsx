@@ -1,5 +1,3 @@
-import PlanTripButton from './PlanTripButton'
-
 export default function Hero() {
   return (
     <section
@@ -74,7 +72,6 @@ export default function Hero() {
                 Created for people who dream of West Africa — and want to live it,
                 not just visit.
               </p>
-              <PlanTripButton />
             </div>
           </div>
 
