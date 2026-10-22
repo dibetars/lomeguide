@@ -1,5 +1,6 @@
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
+import BaguidaStays from '../../components/BaguidaStays'
 
 export const metadata = {
   title: 'South L.A. × Lomé — Your Trip Guide',
@@ -169,53 +170,12 @@ export default function SouthLATrip() {
           <div className="max-w-4xl">
             <p className="font-body text-[10px] uppercase tracking-[0.4em] text-[#D4483C] mb-2">03 — Where to Stay</p>
             <h2 className="font-display font-extrabold uppercase text-white mb-4" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.8rem)' }}>
-              Baguida Airbnb
+              Baguida Airbnbs
             </h2>
             <p className="font-body text-white/60 text-sm leading-relaxed mb-8 max-w-xl">
-              Baguida sits east of central Lomé, right on the coast. It's quieter, more affordable, and great for a small group. Three of you can split a decent house and have a home base for the weekend.
+              Baguida sits east of central Lomé, right on the coast. Quieter, more affordable, and great for a small group. Three of you can split a full house and have a proper base for the weekend.
             </p>
-            <div className="grid sm:grid-cols-2 gap-4 mb-4">
-              <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-                <p className="font-body text-[10px] uppercase tracking-widest text-white/40 mb-3">What to search for</p>
-                <ul className="space-y-3">
-                  {[
-                    'Search "Baguida Lomé" on Airbnb',
-                    'Private house with enclosed compound',
-                    'Confirm Cashpower / electricity included',
-                    'Check reviews mention water supply',
-                    '2 bedrooms covers 3 people comfortably',
-                  ].map(tip => (
-                    <li key={tip} className="flex gap-3 font-body text-sm text-white/65">
-                      <span className="text-[#006A4E] flex-shrink-0">→</span>
-                      {tip}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="bg-[#1A1508] rounded-xl p-6 border border-white/10">
-                <p className="font-body text-[10px] uppercase tracking-widest text-white/40 mb-3">Cost split (3 people, 2 nights)</p>
-                <div className="space-y-3">
-                  <div className="flex justify-between font-body text-sm">
-                    <span className="text-white/60">Budget Airbnb (per night)</span>
-                    <span className="text-white">$20–50</span>
-                  </div>
-                  <div className="flex justify-between font-body text-sm">
-                    <span className="text-white/60">Mid Airbnb (per night)</span>
-                    <span className="text-white">$60–120</span>
-                  </div>
-                  <div className="border-t border-white/10 pt-3 flex justify-between font-body text-sm">
-                    <span className="text-white/60">Per person (2 nights, mid)</span>
-                    <span className="text-[#FFCB00] font-semibold">~$40–80</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex gap-3 bg-amber-900/30 border-l-4 border-[#C4873A] p-4 rounded-r-xl">
-              <span className="text-lg flex-shrink-0">💡</span>
-              <p className="font-body text-xs text-white/65 leading-relaxed">
-                <strong className="text-white">Always confirm Cashpower:</strong> Ask the host before booking whether electricity is included in the rate, or if they'll bill you for top-ups separately.
-              </p>
-            </div>
+            <BaguidaStays />
           </div>
         </section>
 

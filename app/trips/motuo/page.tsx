@@ -1,5 +1,6 @@
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
+import BaguidaStays from '../../components/BaguidaStays'
 
 export const metadata = {
   title: 'Motuo × Lomé — Your Trip Guide',
@@ -115,53 +116,12 @@ export default function MoutoTrip() {
           <div className="max-w-4xl">
             <p className="font-body text-[10px] uppercase tracking-[0.4em] text-[#D4483C] mb-2">03 — Where to Stay</p>
             <h2 className="font-display font-extrabold uppercase text-white mb-4" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.8rem)' }}>
-              Baguida Airbnb
+              Baguida Airbnbs
             </h2>
             <p className="font-body text-white/60 text-sm leading-relaxed mb-8 max-w-xl">
-              Baguida is east of Lomé city center, right on the beach strip. Quieter than the city, cheaper than the hotel zone, and perfect for a group house. With 4 of you splitting the bill, you get space and a base to return to every night.
+              Baguida is east of Lomé city center, right on the beach strip. Quieter than the city, cheaper than the hotel zone, and perfect for a group. With 4 of you splitting the bill, you get a full house to yourselves.
             </p>
-            <div className="grid sm:grid-cols-2 gap-4 mb-6">
-              <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-                <p className="font-body text-[10px] uppercase tracking-widest text-white/40 mb-3">What to look for</p>
-                <ul className="space-y-3">
-                  {[
-                    'Private compound or enclosed yard',
-                    'Check Cashpower / electricity is included',
-                    'At least 2 bedrooms for 4 people',
-                    'Search "Baguida Lomé" on Airbnb',
-                    'Read reviews for generator backup',
-                  ].map(tip => (
-                    <li key={tip} className="flex gap-3 font-body text-sm text-white/65">
-                      <span className="text-[#006A4E] flex-shrink-0">→</span>
-                      {tip}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="bg-[#1A1508] rounded-xl p-6 border border-white/10">
-                <p className="font-body text-[10px] uppercase tracking-widest text-white/40 mb-3">Rough cost split</p>
-                <div className="space-y-3">
-                  <div className="flex justify-between font-body text-sm">
-                    <span className="text-white/60">Budget Airbnb (per night)</span>
-                    <span className="text-white">$20–50</span>
-                  </div>
-                  <div className="flex justify-between font-body text-sm">
-                    <span className="text-white/60">Mid Airbnb (per night)</span>
-                    <span className="text-white">$60–120</span>
-                  </div>
-                  <div className="border-t border-white/10 pt-3 flex justify-between font-body text-sm">
-                    <span className="text-white/60">Per person (3 nights, mid)</span>
-                    <span className="text-[#FFCB00] font-semibold">~$45–90</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex gap-3 bg-amber-900/30 border-l-4 border-[#C4873A] p-4 rounded-r-xl">
-              <span className="text-lg flex-shrink-0">💡</span>
-              <p className="font-body text-xs text-white/65 leading-relaxed">
-                <strong className="text-white">Cashpower check:</strong> Always confirm with the host that electricity costs (Cashpower tokens) are covered in the rate, not billed extra at checkout.
-              </p>
-            </div>
+            <BaguidaStays />
           </div>
         </section>
 
