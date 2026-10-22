@@ -59,7 +59,7 @@ export default function MoutoTrip() {
                 {[
                   { icon: '🌐', title: 'voyage.gouv.tg', desc: 'Complete the mandatory online declaration before you travel. Print your slip — officials check it at the gate.' },
                   { icon: '💉', title: 'Yellow Fever Card', desc: 'Your physical yellow card (vaccination certificate) is non-negotiable at the Togolese checkpoint.' },
-                  { icon: '🚫', title: 'No Photos at the Border', desc: 'Don't take any photos or videos at the checkpoints. Keep your phone in your pocket.' },
+                  { icon: '🚫', title: 'No Photos at the Border', desc: "Don't take any photos or videos at the checkpoints. Keep your phone in your pocket." },
                 ].map(item => (
                   <div key={item.title} className="bg-white/5 rounded-xl p-4 flex gap-4">
                     <span className="text-xl flex-shrink-0">{item.icon}</span>
