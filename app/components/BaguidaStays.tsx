@@ -47,8 +47,8 @@ const STAYS = [
     baths: 3,
     rating: null as number | null,
     reviews: 0,
-    priceTotal: null as number | null,
-    priceOriginal: null as number | null,
+    priceTotal: 243 as number | null,
+    priceOriginal: 304 as number | null,
     urlBase: 'https://www.airbnb.com/rooms/1792381940307215136',
     photos: [
       'https://a0.muscache.com/im/pictures/hosting/Hosting-1792381940307215136/original/ea2945ea-ea2a-4b9e-8510-3595b474ddd9.jpeg?im_w=720',
