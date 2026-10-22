@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-export const alt = 'Lomé Guide — Live the Lomé you've only heard about'
+export const alt = "Lomé Guide — Live the Lomé you've only heard about"
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
