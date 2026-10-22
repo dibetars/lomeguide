@@ -56,25 +56,6 @@ const STAYS = [
       'https://a0.muscache.com/im/pictures/hosting/Hosting-1792381940307215136/original/691a645a-8b2e-4954-a13c-f78e3bbb5fae.jpeg?im_w=720',
     ],
   },
-  {
-    id: 'm-prestige',
-    badge: 'New',
-    type: 'Apartment in Lomé',
-    name: 'M "Prestige" Residence',
-    bedrooms: 4,
-    beds: 4,
-    baths: 1,
-    rating: null as number | null,
-    reviews: 0,
-    priceTotal: null as number | null,
-    priceOriginal: null as number | null,
-    urlBase: 'https://www.airbnb.com/rooms/1741312483915239777',
-    photos: [
-      'https://a0.muscache.com/im/pictures/hosting/Hosting-1741312483915239777/original/04b6e197-65c3-4a8e-a372-3497f2ba4b3d.jpeg?im_w=720',
-      'https://a0.muscache.com/im/pictures/hosting/Hosting-1741312483915239777/original/9b5759a0-7126-47ad-b553-d029c8a2c2ac.jpeg?im_w=720',
-      'https://a0.muscache.com/im/pictures/hosting/Hosting-1741312483915239777/original/eb4cd907-c14d-41f3-923b-2507478bb7f4.jpeg?im_w=720',
-    ],
-  },
 ]
 
 interface Props {
