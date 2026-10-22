@@ -11,7 +11,7 @@ const STAYS = [
     reviews: 12,
     priceTotal: 96,
     priceOriginal: null as number | null,
-    url: 'https://www.airbnb.com/rooms/1324804420177308934?check_in=2026-11-20&check_out=2026-11-22&adults=5',
+    urlBase: 'https://www.airbnb.com/rooms/1324804420177308934',
     photos: [
       'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNDgwNDQyMDE3NzMwODkzNA%3D%3D/original/c638a306-b984-4bdd-a76a-207b2707983e.jpeg?im_w=720',
       'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMyNDgwNDQyMDE3NzMwODkzNA%3D%3D/original/1c39fd6c-9cb6-4dc4-8205-0a41285c215c.jpeg?im_w=720',
@@ -30,7 +30,7 @@ const STAYS = [
     reviews: 14,
     priceTotal: 118,
     priceOriginal: 133 as number | null,
-    url: 'https://www.airbnb.com/rooms/1503609612701944836?check_in=2026-11-20&check_out=2026-11-22&adults=5',
+    urlBase: 'https://www.airbnb.com/rooms/1503609612701944836',
     photos: [
       'https://a0.muscache.com/im/pictures/hosting/Hosting-1503609612701944836/original/cbb455f8-41fd-4b1a-bea8-6b61d3041c4f.jpeg?im_w=720',
       'https://a0.muscache.com/im/pictures/hosting/Hosting-1503609612701944836/original/9460960d-dd60-430e-b081-94ec27694b94.jpeg?im_w=720',
@@ -49,7 +49,7 @@ const STAYS = [
     reviews: 0,
     priceTotal: null as number | null,
     priceOriginal: null as number | null,
-    url: 'https://www.airbnb.com/rooms/1792381940307215136?check_in=2026-11-20&check_out=2026-11-22&adults=5',
+    urlBase: 'https://www.airbnb.com/rooms/1792381940307215136',
     photos: [
       'https://a0.muscache.com/im/pictures/hosting/Hosting-1792381940307215136/original/ea2945ea-ea2a-4b9e-8510-3595b474ddd9.jpeg?im_w=720',
       'https://a0.muscache.com/im/pictures/hosting/Hosting-1792381940307215136/original/9ec0aa34-c777-42e2-a286-b869b500dac6.jpeg?im_w=720',
@@ -68,7 +68,7 @@ const STAYS = [
     reviews: 0,
     priceTotal: null as number | null,
     priceOriginal: null as number | null,
-    url: 'https://www.airbnb.com/rooms/1741312483915239777?check_in=2026-11-20&check_out=2026-11-22&adults=5',
+    urlBase: 'https://www.airbnb.com/rooms/1741312483915239777',
     photos: [
       'https://a0.muscache.com/im/pictures/hosting/Hosting-1741312483915239777/original/04b6e197-65c3-4a8e-a372-3497f2ba4b3d.jpeg?im_w=720',
       'https://a0.muscache.com/im/pictures/hosting/Hosting-1741312483915239777/original/9b5759a0-7126-47ad-b553-d029c8a2c2ac.jpeg?im_w=720',
@@ -77,7 +77,14 @@ const STAYS = [
   },
 ]
 
-export default function BaguidaStays() {
+interface Props {
+  checkIn: string
+  checkOut: string
+  nights: number
+  dateLabel: string
+}
+
+export default function BaguidaStays({ checkIn, checkOut, nights, dateLabel }: Props) {
   return (
     <div className="flex flex-col lg:flex-row gap-6 -mx-5 sm:-mx-8 md:-mx-0">
 
@@ -87,7 +94,7 @@ export default function BaguidaStays() {
           {STAYS.map(stay => (
             <a
               key={stay.id}
-              href={stay.url}
+              href={`${stay.urlBase}?check_in=${checkIn}&check_out=${checkOut}&adults=5`}
               target="_blank"
               rel="noopener noreferrer"
               className="group block"
@@ -161,7 +168,7 @@ export default function BaguidaStays() {
                       <span className="line-through text-white/40 mr-1.5">${stay.priceOriginal}</span>
                     )}
                     <span className="font-semibold">${stay.priceTotal}</span>
-                    <span className="text-white/50 font-normal"> for 2 nights</span>
+                    <span className="text-white/50 font-normal"> for {nights} nights</span>
                   </p>
                 ) : (
                   <p className="font-body text-sm text-white/40">Check Airbnb for pricing</p>

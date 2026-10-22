@@ -19,7 +19,7 @@ export default function MoutoTrip() {
             className="absolute inset-0 pointer-events-none"
             style={{ background: 'radial-gradient(ellipse at 20% 50%, rgba(0,106,78,0.18) 0%, transparent 60%)' }}
           />
-          <div className="relative max-w-4xl">
+          <div className="relative">
             <p className="font-body text-[10px] uppercase tracking-[0.4em] text-[#006A4E] mb-4">Private Trip</p>
             <h1
               className="font-hero italic font-black text-white leading-[0.88] mb-6"
@@ -29,10 +29,10 @@ export default function MoutoTrip() {
               <span style={{ color: '#FFCB00' }}>× Lomé</span>
             </h1>
             <p className="font-body text-white/60 text-base sm:text-lg leading-relaxed max-w-lg">
-              Four Ghanaians. First time in Lomé. Driving in through Aflao, base in Baguida, and the full run — beach, food, nightlife, maybe Kpalimé. Nov 20–22.
+              Four Ghanaians. First time in Lomé. Driving in through Aflao, base in Baguida, and the full run — beach, food, nightlife, maybe Kpalimé. Nov 20–23.
             </p>
             <div className="flex flex-wrap gap-3 mt-8">
-              {['4 Ghanaian Nationals', 'Nov 20–22', 'Driving In', 'Baguida Base', 'Beach + Nightlife', 'Kpalimé Option'].map(tag => (
+              {['4 Ghanaian Nationals', 'Nov 20–23', 'Driving In', 'Baguida Base', 'Beach + Nightlife', 'Kpalimé Option'].map(tag => (
                 <span key={tag} className="font-body text-[10px] uppercase tracking-widest px-4 py-2 rounded-full border border-white/15 text-white/50">
                   {tag}
                 </span>
@@ -43,7 +43,7 @@ export default function MoutoTrip() {
 
         {/* ── Visa & Entry ── */}
         <section className="px-5 sm:px-8 md:px-16 py-14 border-t border-white/8">
-          <div className="max-w-4xl">
+          <div>
             <p className="font-body text-[10px] uppercase tracking-[0.4em] text-[#006A4E] mb-2">01 — Before You Go</p>
             <h2 className="font-display font-extrabold uppercase text-white mb-8" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.8rem)' }}>
               You're Visa-Free
@@ -77,7 +77,7 @@ export default function MoutoTrip() {
 
         {/* ── Getting There ── */}
         <section className="px-5 sm:px-8 md:px-16 py-14 border-t border-white/8">
-          <div className="max-w-4xl">
+          <div>
             <p className="font-body text-[10px] uppercase tracking-[0.4em] text-[#FFCB00] mb-2">02 — Getting There</p>
             <h2 className="font-display font-extrabold uppercase text-white mb-8" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.8rem)' }}>
               Accra → Aflao → Lomé
@@ -113,21 +113,19 @@ export default function MoutoTrip() {
 
         {/* ── Where to Stay ── */}
         <section className="px-5 sm:px-8 md:px-16 py-14 border-t border-white/8">
-          <div className="max-w-4xl">
-            <p className="font-body text-[10px] uppercase tracking-[0.4em] text-[#D4483C] mb-2">03 — Where to Stay</p>
-            <h2 className="font-display font-extrabold uppercase text-white mb-4" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.8rem)' }}>
-              Baguida Airbnbs
-            </h2>
-            <p className="font-body text-white/60 text-sm leading-relaxed mb-8 max-w-xl">
-              Baguida is east of Lomé city center, right on the beach strip. Quieter than the city, cheaper than the hotel zone, and perfect for a group. With 4 of you splitting the bill, you get a full house to yourselves.
-            </p>
-            <BaguidaStays />
-          </div>
+          <p className="font-body text-[10px] uppercase tracking-[0.4em] text-[#D4483C] mb-2">03 — Where to Stay</p>
+          <h2 className="font-display font-extrabold uppercase text-white mb-4" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.8rem)' }}>
+            Airbnbs
+          </h2>
+          <p className="font-body text-white/60 text-sm leading-relaxed mb-8 max-w-xl">
+            Baguida is east of Lomé city center, right on the beach strip. Quieter than the city, cheaper than the hotel zone, and perfect for a group. With 4 of you splitting the bill, you get a full house to yourselves.
+          </p>
+          <BaguidaStays checkIn="2026-11-20" checkOut="2026-11-23" nights={3} dateLabel="Nov 20–23" />
         </section>
 
         {/* ── The Plan ── */}
         <section className="px-5 sm:px-8 md:px-16 py-14 border-t border-white/8">
-          <div className="max-w-4xl">
+          <div>
             <p className="font-body text-[10px] uppercase tracking-[0.4em] text-[#006A4E] mb-2">04 — The Plan</p>
             <h2 className="font-display font-extrabold uppercase text-white mb-8" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.8rem)' }}>
               How to Run It
@@ -159,7 +157,7 @@ export default function MoutoTrip() {
                   ],
                 },
                 {
-                  day: 'Nov 22 — Saturday (Optional)',
+                  day: 'Nov 22 — Saturday',
                   title: 'Kpalimé Run',
                   color: '#D4483C',
                   steps: [
@@ -193,7 +191,7 @@ export default function MoutoTrip() {
 
         {/* ── Food & Nightlife ── */}
         <section className="px-5 sm:px-8 md:px-16 py-14 border-t border-white/8">
-          <div className="max-w-4xl">
+          <div>
             <p className="font-body text-[10px] uppercase tracking-[0.4em] text-[#FFCB00] mb-2">05 — Eat & Go Out</p>
             <h2 className="font-display font-extrabold uppercase text-white mb-8" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.8rem)' }}>
               The Shortlist
@@ -248,7 +246,7 @@ export default function MoutoTrip() {
 
         {/* ── Don't Forget ── */}
         <section className="px-5 sm:px-8 md:px-16 py-14 border-t border-white/8">
-          <div className="max-w-4xl">
+          <div>
             <p className="font-body text-[10px] uppercase tracking-[0.4em] text-[#D4483C] mb-2">06 — Checklist</p>
             <h2 className="font-display font-extrabold uppercase text-white mb-8" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.8rem)' }}>
               Don't Leave Without

@@ -19,7 +19,7 @@ export default function SouthLATrip() {
             className="absolute inset-0 pointer-events-none"
             style={{ background: 'radial-gradient(ellipse at 80% 40%, rgba(212,72,60,0.15) 0%, transparent 60%)' }}
           />
-          <div className="relative max-w-4xl">
+          <div className="relative">
             <p className="font-body text-[10px] uppercase tracking-[0.4em] text-[#D4483C] mb-4">Private Trip</p>
             <h1
               className="font-hero italic font-black text-white leading-[0.88] mb-6"
@@ -29,10 +29,10 @@ export default function SouthLATrip() {
               <span style={{ color: '#FFCB00' }}>× Lomé</span>
             </h1>
             <p className="font-body text-white/60 text-base sm:text-lg leading-relaxed max-w-lg">
-              Two French nationals, one Ghanaian. First time in Lomé. Crossing through Aflao, Baguida base, beach days and real nightlife. Nov 20–22.
+              Two French nationals, one Ghanaian. First time in Lomé. Crossing through Aflao, Baguida base, beach days and real nightlife. Nov 21–23.
             </p>
             <div className="flex flex-wrap gap-3 mt-8">
-              {['2 French Nationals', '1 Ghanaian', 'Nov 20–22', 'Baguida Base', 'Beach + Nightlife', 'Car Hire for Kpalimé'].map(tag => (
+              {['2 French Nationals', '1 Ghanaian', 'Nov 21–23', 'Baguida Base', 'Beach + Nightlife', 'Car Hire for Kpalimé'].map(tag => (
                 <span key={tag} className="font-body text-[10px] uppercase tracking-widest px-4 py-2 rounded-full border border-white/15 text-white/50">
                   {tag}
                 </span>
@@ -43,7 +43,7 @@ export default function SouthLATrip() {
 
         {/* ── Visa & Entry ── */}
         <section className="px-5 sm:px-8 md:px-16 py-14 border-t border-white/8">
-          <div className="max-w-4xl">
+          <div>
             <p className="font-body text-[10px] uppercase tracking-[0.4em] text-[#006A4E] mb-2">01 — Before You Go</p>
             <h2 className="font-display font-extrabold uppercase text-white mb-8" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.8rem)' }}>
               Visas: Split Situation
@@ -87,7 +87,7 @@ export default function SouthLATrip() {
             <div className="bg-[#D4483C]/15 border-l-4 border-[#D4483C] p-4 rounded-r-xl flex gap-4">
               <span className="text-lg flex-shrink-0">📅</span>
               <p className="font-body text-sm text-white/70 leading-relaxed">
-                <strong className="text-white">Trip is Nov 20.</strong> The two French nationals need to apply for their E-visas now — the earlier the better to avoid processing delays.
+                <strong className="text-white">Trip is Nov 21.</strong> The two French nationals need to apply for their E-visas now — the earlier the better to avoid processing delays.
               </p>
             </div>
           </div>
@@ -95,7 +95,7 @@ export default function SouthLATrip() {
 
         {/* ── Currency note for French nationals ── */}
         <section className="px-5 sm:px-8 md:px-16 py-14 border-t border-white/8">
-          <div className="max-w-4xl">
+          <div>
             <p className="font-body text-[10px] uppercase tracking-[0.4em] text-[#FFCB00] mb-2">01b — Currency</p>
             <h2 className="font-display font-extrabold uppercase text-white mb-6" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.8rem)' }}>
               EUR → XOF
@@ -127,7 +127,7 @@ export default function SouthLATrip() {
 
         {/* ── Getting There ── */}
         <section className="px-5 sm:px-8 md:px-16 py-14 border-t border-white/8">
-          <div className="max-w-4xl">
+          <div>
             <p className="font-body text-[10px] uppercase tracking-[0.4em] text-[#C4873A] mb-2">02 — Getting There</p>
             <h2 className="font-display font-extrabold uppercase text-white mb-8" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.8rem)' }}>
               Accra → Aflao → Lomé
@@ -167,29 +167,27 @@ export default function SouthLATrip() {
 
         {/* ── Where to Stay ── */}
         <section className="px-5 sm:px-8 md:px-16 py-14 border-t border-white/8">
-          <div className="max-w-4xl">
-            <p className="font-body text-[10px] uppercase tracking-[0.4em] text-[#D4483C] mb-2">03 — Where to Stay</p>
-            <h2 className="font-display font-extrabold uppercase text-white mb-4" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.8rem)' }}>
-              Baguida Airbnbs
-            </h2>
-            <p className="font-body text-white/60 text-sm leading-relaxed mb-8 max-w-xl">
-              Baguida sits east of central Lomé, right on the coast. Quieter, more affordable, and great for a small group. Three of you can split a full house and have a proper base for the weekend.
-            </p>
-            <BaguidaStays />
-          </div>
+          <p className="font-body text-[10px] uppercase tracking-[0.4em] text-[#D4483C] mb-2">03 — Where to Stay</p>
+          <h2 className="font-display font-extrabold uppercase text-white mb-4" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.8rem)' }}>
+            Airbnbs
+          </h2>
+          <p className="font-body text-white/60 text-sm leading-relaxed mb-8 max-w-xl">
+            Baguida sits east of central Lomé, right on the coast. Quieter, more affordable, and great for a small group. Three of you can split a full house and have a proper base for the weekend.
+          </p>
+          <BaguidaStays checkIn="2026-11-21" checkOut="2026-11-23" nights={2} dateLabel="Nov 21–23" />
         </section>
 
         {/* ── The Plan ── */}
         <section className="px-5 sm:px-8 md:px-16 py-14 border-t border-white/8">
-          <div className="max-w-4xl">
+          <div>
             <p className="font-body text-[10px] uppercase tracking-[0.4em] text-[#006A4E] mb-2">04 — The Plan</p>
             <h2 className="font-display font-extrabold uppercase text-white mb-8" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.8rem)' }}>
-              Nov 20–22
+              Nov 21–23
             </h2>
             <div className="space-y-4">
               {[
                 {
-                  day: 'Nov 20 — Thursday',
+                  day: 'Nov 21 — Friday',
                   title: 'Arrive & Explore',
                   color: '#006A4E',
                   steps: [
@@ -201,7 +199,7 @@ export default function SouthLATrip() {
                   ],
                 },
                 {
-                  day: 'Nov 21 — Friday',
+                  day: 'Nov 22 — Saturday',
                   title: 'Beach Day',
                   color: '#C4873A',
                   steps: [
@@ -213,7 +211,7 @@ export default function SouthLATrip() {
                   ],
                 },
                 {
-                  day: 'Nov 22 — Saturday (Optional)',
+                  day: 'Nov 23 — Sunday',
                   title: 'Kpalimé or Final Run',
                   color: '#D4483C',
                   steps: [
@@ -246,7 +244,7 @@ export default function SouthLATrip() {
 
         {/* ── Kpalimé car note ── */}
         <section className="px-5 sm:px-8 md:px-16 py-14 border-t border-white/8">
-          <div className="max-w-4xl">
+          <div>
             <p className="font-body text-[10px] uppercase tracking-[0.4em] text-[#FFCB00] mb-2">04b — Kpalimé</p>
             <h2 className="font-display font-extrabold uppercase text-white mb-6" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.8rem)' }}>
               Booking the Car
@@ -269,7 +267,7 @@ export default function SouthLATrip() {
 
         {/* ── Food & Nightlife ── */}
         <section className="px-5 sm:px-8 md:px-16 py-14 border-t border-white/8">
-          <div className="max-w-4xl">
+          <div>
             <p className="font-body text-[10px] uppercase tracking-[0.4em] text-[#FFCB00] mb-2">05 — Eat & Go Out</p>
             <h2 className="font-display font-extrabold uppercase text-white mb-8" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.8rem)' }}>
               The Shortlist
@@ -324,7 +322,7 @@ export default function SouthLATrip() {
 
         {/* ── Don't Forget ── */}
         <section className="px-5 sm:px-8 md:px-16 py-14 border-t border-white/8">
-          <div className="max-w-4xl">
+          <div>
             <p className="font-body text-[10px] uppercase tracking-[0.4em] text-[#D4483C] mb-2">06 — Checklist</p>
             <h2 className="font-display font-extrabold uppercase text-white mb-8" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.8rem)' }}>
               Don't Leave Without
