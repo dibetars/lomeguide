@@ -184,54 +184,56 @@ export default function SouthLATrip() {
             <h2 className="font-display font-extrabold uppercase text-white mb-8" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.8rem)' }}>
               Nov 21–23
             </h2>
-            <div className="space-y-4">
+            <div className="grid sm:grid-cols-3 gap-4">
               {[
                 {
-                  day: 'Nov 21 — Friday',
+                  day: 'Nov 21',
+                  label: 'Friday',
                   title: 'Arrive & Explore',
                   color: '#006A4E',
                   steps: [
-                    'Cross through Aflao — French nationals have E-visas ready',
-                    'Gozem or taxi to Baguida Airbnb from the border',
-                    'Settle in, quick freshen up',
-                    'Dinner at Nomads — first-night energy, great food',
-                    'Night: Oya Bar for cocktails, then MAD Complexe',
+                    'Cross Aflao — French nationals: E-visas ready',
+                    'Gozem or taxi to Baguida Airbnb',
+                    'Settle in, freshen up',
+                    'Dinner: Nomads',
+                    'Night: Oya Bar → MAD Complexe',
                   ],
                 },
                 {
-                  day: 'Nov 22 — Saturday',
+                  day: 'Nov 22',
+                  label: 'Saturday',
                   title: 'Beach Day',
                   color: '#C4873A',
                   steps: [
-                    'Late breakfast — Chef Komi pastries or street food',
-                    'Marcelo Beach Club or Pure Plage for the afternoon',
-                    'La Sunset Beach Lounge for beach drinks and lunch',
-                    'Evening: Le Hangar for open-air dinner vibes',
-                    'Night: Hotel 2 Février Rooftop for the panorama',
+                    'Chef Komi pastries for breakfast',
+                    'Marcelo Beach Club or Pure Plage',
+                    'La Sunset Beach Lounge for lunch',
+                    'Evening: Le Hangar open-air dinner',
+                    'Night: Hotel 2 Février Rooftop',
                   ],
                 },
                 {
-                  day: 'Nov 23 — Sunday',
-                  title: 'Kpalimé or Final Run',
-                  color: '#D4483C',
+                  day: 'Nov 23',
+                  label: 'Sunday · Departure',
+                  title: 'Lite & Head Back',
+                  color: '#FFCB00',
                   steps: [
-                    'Option 1: Book a private car or Gozem car to Kpalimé (~2hrs)',
-                    'Cascade de Kpimé hike, cooler air, markets',
-                    'Back to Lomé by evening for a final night out',
-                    'Option 2: Stay in Lomé — brunch at Le Patio, beach afternoon',
-                    'Final night: Le Galion for live music',
+                    'Late checkout if possible',
+                    'Le Patio for a slow brunch',
+                    'Final walk on the beach',
+                    'Settle up — CFA → EUR or Cedis at Aflao',
+                    'Bus or sedan back to Accra',
                   ],
                 },
               ].map(d => (
-                <div key={d.day} className="rounded-xl p-6" style={{ backgroundColor: `${d.color}18`, borderLeft: `3px solid ${d.color}` }}>
-                  <div className="flex items-center gap-4 mb-4">
-                    <span className="font-body text-[10px] uppercase tracking-widest" style={{ color: d.color }}>{d.day}</span>
-                    <h3 className="font-body text-sm font-semibold text-white">{d.title}</h3>
-                  </div>
-                  <ol className="space-y-2">
+                <div key={d.day} className="rounded-xl p-5" style={{ backgroundColor: `${d.color}12`, borderTop: `3px solid ${d.color}` }}>
+                  <p className="font-body text-[10px] uppercase tracking-widest mb-0.5" style={{ color: d.color }}>{d.day}</p>
+                  <p className="font-body text-[9px] uppercase tracking-widest text-white/30 mb-3">{d.label}</p>
+                  <h3 className="font-body text-sm font-semibold text-white mb-4">{d.title}</h3>
+                  <ol className="space-y-2.5">
                     {d.steps.map((step, i) => (
-                      <li key={i} className="flex gap-3 font-body text-sm text-white/65">
-                        <span className="font-display font-bold flex-shrink-0 w-4" style={{ color: `${d.color}80` }}>{i + 1}</span>
+                      <li key={i} className="flex gap-2.5 font-body text-xs text-white/60">
+                        <span className="font-display font-bold flex-shrink-0" style={{ color: `${d.color}90` }}>{i + 1}</span>
                         <span className="leading-relaxed">{step}</span>
                       </li>
                     ))}
