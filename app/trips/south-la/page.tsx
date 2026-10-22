@@ -174,6 +174,16 @@ export default function SouthLATrip() {
           <p className="font-body text-white/60 text-sm leading-relaxed mb-8 max-w-xl">
             Baguida sits east of central Lomé, right on the coast. Quieter, more affordable, and great for a small group. Three of you can split a full house and have a proper base for the weekend.
           </p>
+          {/* Cost-split callout */}
+          <div className="flex gap-4 bg-[#FFCB00]/10 border border-[#FFCB00]/25 rounded-xl p-5 mb-8">
+            <span className="text-xl flex-shrink-0">💡</span>
+            <div>
+              <p className="font-body text-sm font-semibold text-[#FFCB00] mb-1">Share the Airbnb with the Motuo crew</p>
+              <p className="font-body text-xs text-white/60 leading-relaxed">
+                The Motuo group (4 people) is also in Lomé Nov 21–22 — the dates line up. Pool together into one of these 6-person houses and split the cost across all 7 of you. Cheaper per person, bigger house, better energy.
+              </p>
+            </div>
+          </div>
           <BaguidaStays checkIn="2026-11-21" checkOut="2026-11-23" nights={2} dateLabel="Nov 21–23" />
         </section>
 

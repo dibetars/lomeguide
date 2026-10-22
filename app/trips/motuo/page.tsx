@@ -120,6 +120,16 @@ export default function MoutoTrip() {
           <p className="font-body text-white/60 text-sm leading-relaxed mb-8 max-w-xl">
             Baguida is east of Lomé city center, right on the beach strip. Quieter than the city, cheaper than the hotel zone, and perfect for a group. With 4 of you splitting the bill, you get a full house to yourselves.
           </p>
+          {/* Cost-split callout */}
+          <div className="flex gap-4 bg-[#FFCB00]/10 border border-[#FFCB00]/25 rounded-xl p-5 mb-8">
+            <span className="text-xl flex-shrink-0">💡</span>
+            <div>
+              <p className="font-body text-sm font-semibold text-[#FFCB00] mb-1">Share the Airbnb with the South L.A. crew</p>
+              <p className="font-body text-xs text-white/60 leading-relaxed">
+                The South L.A. group (3 people) is also in Lomé Nov 21–23 — the dates overlap. Split one of these 6-person houses between both groups and everyone pays significantly less. All the listings below accommodate 6 guests.
+              </p>
+            </div>
+          </div>
           <BaguidaStays checkIn="2026-11-20" checkOut="2026-11-23" nights={3} dateLabel="Nov 20–23" />
         </section>
 
