@@ -2,9 +2,9 @@ import { EATS, KPALIME_STAYS, LOME_STAYS, NIGHTLIFE } from './data'
 import { nightsBetween } from './dates'
 import type { CostEstimate, CostLine, TripDraft } from './types'
 
-export const GHS_TO_XOF = 47
+export const GHS_TO_XOF = 51
 
-const USD_TO_GHS = 610 / 47
+const USD_TO_GHS = 610 / 51
 
 const STAY_USD: Record<string, { low: number; high: number }> = {
   budget: { low: 10, high: 30 },

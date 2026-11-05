@@ -49,7 +49,7 @@ export default function CurrencySection() {
             <p className="font-body text-[10px] uppercase tracking-widest text-stone-500 mb-2">
               Exchange Rate Benchmark
             </p>
-            <p className="font-display text-5xl font-light text-stone-800 mb-1">45–50 XOF</p>
+            <p className="font-display text-5xl font-light text-stone-800 mb-1">51 XOF</p>
             <p className="font-body text-sm text-stone-500 mb-4">per 1 GHS</p>
             <p className="font-body text-xs text-stone-500 leading-relaxed">
               Rates fluctuate daily. Check <strong>Xe</strong> or <strong>Wise</strong> on the
@@ -70,6 +70,15 @@ export default function CurrencySection() {
               food, taxis, and smaller bars are strictly <strong>cash-only</strong>.
             </p>
           </div>
+        </div>
+
+        <div className="flex gap-3 bg-amber-50 border-l-4 border-[#C4873A] p-4 rounded-r-lg mt-6">
+          <span className="text-lg flex-shrink-0">📱</span>
+          <p className="font-body text-xs md:text-sm text-stone-600 leading-relaxed">
+            <strong>Send money ahead via Moov MoMo:</strong> If you want to top up a Moov
+            mobile-money account in Lomé before you arrive, we can arrange for a Moov SIM to be
+            ready for you so you can send funds ahead of the trip.
+          </p>
         </div>
       </div>
     </section>

@@ -142,6 +142,14 @@ const sections = [
           ))}
         </div>
         <CurrencyConverter />
+        <div className="flex gap-3 bg-amber-50 border-l-4 border-[#C4873A] p-4 rounded-r-lg">
+          <span className="text-lg flex-shrink-0">📱</span>
+          <p className="font-body text-xs text-stone-600 leading-relaxed">
+            <strong>Send money ahead via Moov MoMo:</strong> If you want to top up a Moov
+            mobile-money account in Lomé before you arrive, we can arrange for a Moov SIM to be
+            ready for you so you can send funds ahead of the trip.
+          </p>
+        </div>
       </div>
     ),
   },

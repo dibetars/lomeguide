@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 const currencies = [
   { code: 'USD', label: 'US Dollar', symbol: '$', rate: 610 },
-  { code: 'GHS', label: 'Ghanaian Cedi', symbol: '₵', rate: 47 },
+  { code: 'GHS', label: 'Ghanaian Cedi', symbol: '₵', rate: 51 },
   { code: 'EUR', label: 'Euro', symbol: '€', rate: 656 },
   { code: 'GBP', label: 'British Pound', symbol: '£', rate: 775 },
 ]
