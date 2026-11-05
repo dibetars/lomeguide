@@ -1,21 +1,43 @@
+'use client'
+
+import { useState } from 'react'
+
 export default function Hero() {
+  const [useGifFallback, setUseGifFallback] = useState(false)
+
   return (
     <section
       id="hero"
       className="relative flex flex-col overflow-hidden bg-[#060E0A]"
       style={{ minHeight: 'calc(72vh + 144px)' }}
     >
-      {/* ── Background video ── */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ zIndex: 0 }}
-      >
-        <source src="/togo.mp4" type="video/mp4" />
-      </video>
+      {/* ── Background video (GIF fallback if video fails) ── */}
+      {useGifFallback ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src="/togo.gif"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ zIndex: 0 }}
+        />
+      ) : (
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/togo-poster.jpg"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ zIndex: 0 }}
+          onError={() => setUseGifFallback(true)}
+        >
+          <source
+            src="/togo.mp4"
+            type="video/mp4"
+            onError={() => setUseGifFallback(true)}
+          />
+        </video>
+      )}
 
       {/* ── Dark overlay ── */}
       <div
