@@ -26,6 +26,7 @@ function buildBookingUrl(
   hotelId: string,
   checkin: string,
   checkout: string,
+  guests: number,
   extras: Record<string, string> = {},
 ) {
   const params = new URLSearchParams({
@@ -40,7 +41,7 @@ function buildBookingUrl(
     dest_type: 'city',
     checkin,
     checkout,
-    group_adults: '2',
+    group_adults: String(guests),
     no_rooms: '1',
     group_children: '0',
     ...extras,
@@ -48,9 +49,9 @@ function buildBookingUrl(
   return `https://www.booking.com/searchresults.en-gb.html?${params.toString()}`
 }
 
-function buildOnomoUrl(checkin: string, checkout: string) {
+function buildOnomoUrl(checkin: string, checkout: string, guests: number) {
   const params = new URLSearchParams({
-    adult: '1',
+    adult: String(guests),
     arrive: checkin,
     chain: '27746',
     child: '0',
@@ -65,18 +66,18 @@ function buildOnomoUrl(checkin: string, checkout: string) {
   return `https://reservations.onomohotels.com/?${params.toString()}`
 }
 
-function buildPatioUrl(checkin: string, checkout: string) {
+function buildPatioUrl(checkin: string, checkout: string, guests: number) {
   const params = new URLSearchParams({
     currency: 'ghs',
     checkin,
     checkout,
-    adults: '2',
+    adults: String(guests),
     kids: '0',
   })
   return `https://us2.cloudbeds.com/en/reservation/AG3HEJ?${params.toString()}`
 }
 
-function buildAirbnbUrl(checkin: string, checkout: string) {
+function buildAirbnbUrl(checkin: string, checkout: string, guests: number) {
   const params = new URLSearchParams()
   params.set('place_id', 'ChIJGVQYE8HhIxARHUGvLEK1JDI')
   params.set('search_type', 'unknown')
@@ -89,15 +90,16 @@ function buildAirbnbUrl(checkin: string, checkout: string) {
   params.set('channel', 'EXPLORE')
   params.set('checkin', checkin)
   params.set('checkout', checkout)
+  params.set('adults', String(guests))
   params.set('source', 'structured_search_input_header')
   return `https://www.airbnb.com/s/Lom%C3%A9--Maritime-Region--Togo/homes?${params.toString()}`
 }
 
-function buildAirbnbRoomUrl(roomUrl: string, checkin: string, checkout: string) {
+function buildAirbnbRoomUrl(roomUrl: string, checkin: string, checkout: string, guests: number) {
   const params = new URLSearchParams({
     check_in: checkin,
     check_out: checkout,
-    adults: '2',
+    adults: String(guests),
   })
   return `${roomUrl}?${params.toString()}`
 }
@@ -109,7 +111,7 @@ type BookableStay = {
   emoji: string
   provider: string
   cta: string
-  buildUrl: (checkin: string, checkout: string) => string
+  buildUrl: (checkin: string, checkout: string, guests: number) => string
 }
 
 type LinkedStay = {
@@ -128,8 +130,8 @@ const bookable: BookableStay[] = [
     emoji: '🏖️',
     provider: 'Booking.com',
     cta: 'Check Availability',
-    buildUrl: (inDate, outDate) =>
-      buildBookingUrl('5627015', inDate, outDate, { src: 'searchresults' }),
+    buildUrl: (inDate, outDate, guests) =>
+      buildBookingUrl('5627015', inDate, outDate, guests, { src: 'searchresults' }),
   },
   {
     id: 'nomads',
@@ -138,8 +140,8 @@ const bookable: BookableStay[] = [
     emoji: '✨',
     provider: 'Booking.com',
     cta: 'Check Availability',
-    buildUrl: (inDate, outDate) =>
-      buildBookingUrl('9458502', inDate, outDate, { src: 'hotel', efdco: '1' }),
+    buildUrl: (inDate, outDate, guests) =>
+      buildBookingUrl('9458502', inDate, outDate, guests, { src: 'hotel', efdco: '1' }),
   },
   {
     id: 'patio',
@@ -166,8 +168,8 @@ const bookable: BookableStay[] = [
     emoji: '🌇',
     provider: 'Airbnb · Cité Baguida',
     cta: 'View on Airbnb',
-    buildUrl: (inDate, outDate) =>
-      buildAirbnbRoomUrl('https://www.airbnb.com/rooms/1324804420177308934', inDate, outDate),
+    buildUrl: (inDate, outDate, guests) =>
+      buildAirbnbRoomUrl('https://www.airbnb.com/rooms/1324804420177308934', inDate, outDate, guests),
   },
   {
     id: 'apt-garden-pool',
@@ -176,8 +178,8 @@ const bookable: BookableStay[] = [
     emoji: '🏡',
     provider: 'Airbnb · Baguida',
     cta: 'View on Airbnb',
-    buildUrl: (inDate, outDate) =>
-      buildAirbnbRoomUrl('https://www.airbnb.com/rooms/1503609612701944836', inDate, outDate),
+    buildUrl: (inDate, outDate, guests) =>
+      buildAirbnbRoomUrl('https://www.airbnb.com/rooms/1503609612701944836', inDate, outDate, guests),
   },
   {
     id: 'villa-nina',
@@ -186,8 +188,8 @@ const bookable: BookableStay[] = [
     emoji: '🌴',
     provider: 'Airbnb · Baguida',
     cta: 'View on Airbnb',
-    buildUrl: (inDate, outDate) =>
-      buildAirbnbRoomUrl('https://www.airbnb.com/rooms/1792381940307215136', inDate, outDate),
+    buildUrl: (inDate, outDate, guests) =>
+      buildAirbnbRoomUrl('https://www.airbnb.com/rooms/1792381940307215136', inDate, outDate, guests),
   },
   {
     id: 'airbnb',
@@ -240,6 +242,7 @@ export default function StayGrid() {
   const [openStay, setOpenStay] = useState<BookableStay | null>(null)
   const [checkin, setCheckin] = useState('')
   const [checkout, setCheckout] = useState('')
+  const [guests, setGuests] = useState(2)
 
   useEffect(() => {
     if (!openStay) return
@@ -257,7 +260,8 @@ export default function StayGrid() {
 
   const minCheckin = todayISO()
   const minCheckout = checkin ? addDays(checkin, 1) : addDays(minCheckin, 1)
-  const valid = Boolean(checkin && checkout && checkout > checkin)
+  const guestsValid = Number.isFinite(guests) && guests >= 1 && guests <= 16
+  const valid = Boolean(checkin && checkout && checkout > checkin && guestsValid)
 
   function onCheckin(value: string) {
     setCheckin(value)
@@ -267,7 +271,7 @@ export default function StayGrid() {
   function search(e: FormEvent) {
     e.preventDefault()
     if (!openStay || !valid) return
-    window.open(openStay.buildUrl(checkin, checkout), '_blank', 'noopener,noreferrer')
+    window.open(openStay.buildUrl(checkin, checkout, guests), '_blank', 'noopener,noreferrer')
     setOpenStay(null)
   }
 
@@ -340,13 +344,13 @@ export default function StayGrid() {
                 className="font-display font-extrabold uppercase text-[#1A1508] leading-tight mb-2"
                 style={{ fontSize: 'clamp(1.4rem, 3vw, 1.85rem)' }}
               >
-                When are you going?
+                Dates & guests
               </h3>
               <p className="font-body text-sm text-[#1A1508]/60 leading-relaxed mb-6">
-                Pick your proposed travel dates and we&apos;ll open the booking page with those dates already set.
+                Tell us when you&apos;re traveling and how many people — we&apos;ll open the booking page with those details filled in.
               </p>
 
-              <div className="grid grid-cols-2 gap-3 mb-6">
+              <div className="grid grid-cols-2 gap-3 mb-3">
                 <div>
                   <label
                     htmlFor={`${formId}-checkin`}
@@ -381,6 +385,25 @@ export default function StayGrid() {
                     className="w-full border border-stone-300 bg-white rounded-lg px-3 py-3 font-body text-base sm:text-sm text-stone-800 focus:outline-none focus:border-[#006A4E] focus:ring-1 focus:ring-[#006A4E]"
                   />
                 </div>
+              </div>
+
+              <div className="mb-6">
+                <label
+                  htmlFor={`${formId}-guests`}
+                  className="font-body text-[10px] uppercase tracking-widest text-stone-500 block mb-1.5"
+                >
+                  Guests
+                </label>
+                <input
+                  id={`${formId}-guests`}
+                  type="number"
+                  required
+                  min={1}
+                  max={16}
+                  value={guests}
+                  onChange={e => setGuests(Math.max(1, Math.min(16, Number(e.target.value) || 1)))}
+                  className="w-full border border-stone-300 bg-white rounded-lg px-3 py-3 font-body text-base sm:text-sm text-stone-800 focus:outline-none focus:border-[#006A4E] focus:ring-1 focus:ring-[#006A4E]"
+                />
               </div>
 
               <button
