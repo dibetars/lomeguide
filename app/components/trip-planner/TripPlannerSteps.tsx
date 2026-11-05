@@ -349,7 +349,9 @@ export function ReviewStep({
         <p className="font-semibold text-stone-800 uppercase tracking-widest text-[10px] mb-2">Don’t forget</p>
         <p>Yellow fever card + passport at both borders.</p>
         <p>voyage.gouv.tg before you travel. No photos at the checkpoint. No dashes.</p>
-        {stay?.id === 'airbnb' && <p>Airbnb: confirm Cashpower / electricity is included.</p>}
+        {stay && ['airbnb', 'apt-rooftop', 'apt-garden-pool', 'villa-nina'].includes(stay.id) && (
+          <p>Airbnb: confirm Cashpower / electricity is included.</p>
+        )}
         <p>Change Cedis at Aflao, not Tudu, when you can.</p>
       </div>
 

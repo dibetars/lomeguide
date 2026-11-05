@@ -93,6 +93,15 @@ function buildAirbnbUrl(checkin: string, checkout: string) {
   return `https://www.airbnb.com/s/Lom%C3%A9--Maritime-Region--Togo/homes?${params.toString()}`
 }
 
+function buildAirbnbRoomUrl(roomUrl: string, checkin: string, checkout: string) {
+  const params = new URLSearchParams({
+    check_in: checkin,
+    check_out: checkout,
+    adults: '2',
+  })
+  return `${roomUrl}?${params.toString()}`
+}
+
 type BookableStay = {
   id: string
   name: string
@@ -151,9 +160,39 @@ const bookable: BookableStay[] = [
     buildUrl: buildOnomoUrl,
   },
   {
+    id: 'apt-rooftop',
+    name: 'Patio & Rooftop Apt',
+    tags: ['Guest favorite', 'Baguida', 'From ~$32/night'],
+    emoji: '🌇',
+    provider: 'Airbnb · Cité Baguida',
+    cta: 'View on Airbnb',
+    buildUrl: (inDate, outDate) =>
+      buildAirbnbRoomUrl('https://www.airbnb.com/rooms/1324804420177308934', inDate, outDate),
+  },
+  {
+    id: 'apt-garden-pool',
+    name: 'Garden & Pool Apartment',
+    tags: ['Superhost', 'Baguida', 'From ~$39/night'],
+    emoji: '🏡',
+    provider: 'Airbnb · Baguida',
+    cta: 'View on Airbnb',
+    buildUrl: (inDate, outDate) =>
+      buildAirbnbRoomUrl('https://www.airbnb.com/rooms/1503609612701944836', inDate, outDate),
+  },
+  {
+    id: 'villa-nina',
+    name: 'Villa Nina — Seaside',
+    tags: ['New', 'Steps from beach', 'From ~$81/night'],
+    emoji: '🌴',
+    provider: 'Airbnb · Baguida',
+    cta: 'View on Airbnb',
+    buildUrl: (inDate, outDate) =>
+      buildAirbnbRoomUrl('https://www.airbnb.com/rooms/1792381940307215136', inDate, outDate),
+  },
+  {
     id: 'airbnb',
-    name: 'Budget Airbnbs',
-    tags: ['Best Value', 'From $10/night'],
+    name: 'More Airbnbs',
+    tags: ['Browse all', 'From $10/night'],
     emoji: '🏠',
     provider: 'Airbnb · Lomé',
     cta: 'Search Airbnb',
@@ -233,12 +272,15 @@ export default function StayGrid() {
   }
 
   const ordered = [
-    bookable[0],
-    bookable[1],
-    linked[0],
-    bookable[2],
-    bookable[3],
-    bookable[4],
+    bookable[0], // Marcelo
+    bookable[1], // Nomads
+    linked[0], // Pure Plage
+    bookable[2], // Le Patio
+    bookable[3], // ONOMO
+    bookable[4], // Patio & Rooftop Apt
+    bookable[5], // Garden & Pool
+    bookable[6], // Villa Nina
+    bookable[7], // More Airbnbs
   ]
 
   return (

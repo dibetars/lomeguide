@@ -17,7 +17,10 @@ export const LOME_STAYS = [
   { id: 'pure-plage', name: 'Pure Plage', tags: ['Beach Luxury', 'Private Beach'], emoji: '🌊', tier: 'beach' as const },
   { id: 'patio', name: 'Le Patio', tags: ['Boutique', 'Central'], emoji: '🌿', tier: 'mid' as const },
   { id: 'onomo', name: 'ONOMO Hotel Lomé', tags: ['Beachfront', 'Business'], emoji: '🏨', tier: 'mid' as const },
-  { id: 'airbnb', name: 'Budget Airbnbs', tags: ['Best Value', 'From $10/night'], emoji: '🏠', tier: 'budget' as const },
+  { id: 'apt-rooftop', name: 'Patio & Rooftop Apt', tags: ['Guest favorite', 'Baguida'], emoji: '🌇', tier: 'budget' as const },
+  { id: 'apt-garden-pool', name: 'Garden & Pool Apartment', tags: ['Superhost', 'Baguida'], emoji: '🏡', tier: 'budget' as const },
+  { id: 'villa-nina', name: 'Villa Nina — Seaside', tags: ['New', 'Steps from beach'], emoji: '🌴', tier: 'mid' as const },
+  { id: 'airbnb', name: 'More Airbnbs', tags: ['Browse all', 'From $10/night'], emoji: '🏠', tier: 'budget' as const },
 ]
 
 export const KPALIME_STAYS = [
