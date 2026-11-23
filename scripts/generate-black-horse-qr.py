@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate a Black Horse–styled QR code (white modules, cyan finder centers).
 
-Encodes https://lomeguide.vercel.app/go/techinghana which redirects to the
+Encodes https://bhredirect.vercel.app which redirects to the
 Black Horse rentals deep link.
 """
 
@@ -13,7 +13,7 @@ import qrcode
 from PIL import Image, ImageDraw, ImageFont
 from qrcode.constants import ERROR_CORRECT_H
 
-URL = "https://lomeguide.vercel.app/go/techinghana"
+URL = "https://bhredirect.vercel.app"
 OUT = Path(__file__).resolve().parents[1] / "public" / "qr" / "techinghana-black-horse.png"
 
 NAVY = (11, 20, 40, 255)  # #0B1428
