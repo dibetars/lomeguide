@@ -4,13 +4,16 @@ import CopyMoMo from './CopyMoMo'
 import SplitRoster from './SplitRoster'
 import {
   BLUE_TURTLE,
+  FELIX_ROAD,
   NOPEGALI_ITEMS,
   PAYEES,
   PEOPLE,
   RATE,
+  blueTurtleGhs,
   formatGhs,
   personPayouts,
   toGhs,
+  yaaToFelixNettedGhs,
 } from './data'
 
 export const metadata = {
@@ -46,7 +49,7 @@ export default function MotuoSplitPage() {
               The split
             </h1>
             <p className="font-body text-white/55 text-base leading-relaxed max-w-xl">
-              Blue Turtle, NopeGali lunch, and fuel — converted at {RATE} CFA = ₵1. Tap your name to pay.
+              Blue Turtle, NopeGali, fuel, and road — converted at {RATE} CFA = ₵1. Tap your name to pay.
             </p>
           </div>
         </section>
@@ -59,13 +62,13 @@ export default function MotuoSplitPage() {
           <h2 className="font-display font-extrabold uppercase text-white mb-8" style={{ fontSize: 'clamp(1.4rem, 3vw, 2.2rem)' }}>
             Payouts
           </h2>
-          <div className="space-y-3 max-w-3xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 w-full">
             {payouts.map(p => {
               const payee = PAYEES[p.to]
               return (
                 <div
                   key={`${p.from}-${p.to}-${p.note}`}
-                  className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
+                  className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 flex flex-col justify-between gap-3"
                 >
                   <div>
                     <p className="font-body text-sm text-white">
@@ -81,7 +84,7 @@ export default function MotuoSplitPage() {
                     )}
                     <CopyMoMo number={payee.number} display={payee.display} />
                   </div>
-                  <p className="font-display font-bold text-white text-2xl sm:text-right">{formatGhs(p.ghs)}</p>
+                  <p className="font-display font-bold text-white text-2xl">{formatGhs(p.ghs)}</p>
                 </div>
               )
             })}
@@ -94,10 +97,10 @@ export default function MotuoSplitPage() {
           <h2 className="font-display font-extrabold uppercase text-white mb-2" style={{ fontSize: 'clamp(1.4rem, 3vw, 2.2rem)' }}>
             Blue Turtle
           </h2>
-          <p className="font-body text-sm text-white/45 mb-8 max-w-xl">
+          <p className="font-body text-sm text-white/45 mb-8">
             49,000 CFA paid by Yaa · split 7 ways · Dibe & Clo excluded · {formatGhs(btEach)} each
           </p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-3 w-full">
             {BLUE_TURTLE.drinkers.map(name => (
               <div key={name} className="rounded-xl bg-[#006A4E]/25 border border-[#006A4E]/40 px-4 py-3">
                 <p className="font-body text-xs text-white/60 mb-1">{name}</p>
@@ -113,14 +116,14 @@ export default function MotuoSplitPage() {
           <h2 className="font-display font-extrabold uppercase text-white mb-2" style={{ fontSize: 'clamp(1.4rem, 3vw, 2.2rem)' }}>
             NopeGali
           </h2>
-          <p className="font-body text-sm text-white/45 mb-8 max-w-xl">
+          <p className="font-body text-sm text-white/45 mb-8">
             73,500 CFA paid by Clara · itemized by person
           </p>
-          <div className="max-w-3xl divide-y divide-white/8 rounded-2xl border border-white/10 overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 w-full">
             {NOPEGALI_ITEMS.map((row, i) => (
               <div
                 key={`${row.person}-${row.items}-${i}`}
-                className="flex items-center justify-between gap-4 px-5 py-3 bg-white/[0.02]"
+                className="rounded-2xl border border-white/10 bg-white/[0.02] flex items-center justify-between gap-4 px-5 py-4"
               >
                 <div>
                   <p className="font-body text-sm text-white">{row.person}</p>
@@ -132,13 +135,38 @@ export default function MotuoSplitPage() {
           </div>
         </section>
 
-        {/* Fuel */}
+        {/* Road — Felix */}
+        <section className="px-5 sm:px-8 md:px-16 py-14 border-t border-white/8">
+          <p className="font-body text-[10px] uppercase tracking-[0.35em] text-white/35 mb-2">Road</p>
+          <h2 className="font-display font-extrabold uppercase text-white mb-2" style={{ fontSize: 'clamp(1.4rem, 3vw, 2.2rem)' }}>
+            Felix paid
+          </h2>
+          <p className="font-body text-sm text-white/45 mb-8">
+            Fuel ₵{FELIX_ROAD.fuelGhs} + border ₵{FELIX_ROAD.borderGhs} = ₵{FELIX_ROAD.totalGhs.toLocaleString()} · Fiifi & Yaa cover half
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+            <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+              <p className="font-body text-xs text-white/45 mb-2">Fiifi → Felix</p>
+              <p className="font-hero italic font-black text-white text-4xl">{formatGhs(FELIX_ROAD.eachGhs)}</p>
+              <p className="font-body text-xs text-white/40 mt-3">{PAYEES.felix.display}</p>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+              <p className="font-body text-xs text-white/45 mb-2">Yaa → Felix (netted)</p>
+              <p className="font-hero italic font-black text-white text-4xl">{formatGhs(yaaToFelixNettedGhs())}</p>
+              <p className="font-body text-xs text-[#FFCB00] mt-3">
+                ₵{FELIX_ROAD.eachGhs} road − ₵{blueTurtleGhs().toFixed(2)} Felix Blue Turtle
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Fuel — Abraham */}
         <section className="px-5 sm:px-8 md:px-16 py-14 border-t border-white/8">
           <p className="font-body text-[10px] uppercase tracking-[0.35em] text-white/35 mb-2">Fuel</p>
           <h2 className="font-display font-extrabold uppercase text-white mb-8" style={{ fontSize: 'clamp(1.4rem, 3vw, 2.2rem)' }}>
             To Abraham
           </h2>
-          <div className="grid sm:grid-cols-2 gap-4 max-w-3xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
               <p className="font-body text-xs text-white/45 mb-2">Clo → Abraham</p>
               <p className="font-hero italic font-black text-white/35 text-4xl line-through">{formatGhs(200)}</p>
@@ -154,7 +182,8 @@ export default function MotuoSplitPage() {
 
         <section className="px-5 sm:px-8 md:px-16 py-10 border-t border-white/8">
           <p className="font-body text-xs text-white/30">
-            Rate {RATE} CFA / GHS · Fiifi → Yaa Blue Turtle share is same-couple and omitted from the send list.
+            Rate {RATE} CFA / GHS · Nets applied: Yaa↔Clara cancel · Felix Blue Turtle nets into Yaa→Felix road ·
+            Fiifi→Yaa Blue Turtle same-couple omitted · Abraham NopeGali already nets Clara fuel ₵130.
           </p>
         </section>
       </main>

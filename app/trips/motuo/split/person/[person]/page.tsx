@@ -11,6 +11,7 @@ import {
   RATE,
   formatGhs,
   getPerson,
+  personCalcSteps,
   personNopeCfa,
   personPayouts,
   personReceives,
@@ -40,6 +41,7 @@ export default function PersonSplitPage({ params }: { params: { person: string }
   const items = NOPEGALI_ITEMS.filter(i => i.person === person.name)
   const onBlueTurtle = BLUE_TURTLE.drinkers.includes(person.name)
   const nopeCfa = personNopeCfa(person.name)
+  const calcSteps = personCalcSteps(person.id)
   const household =
     person.name === 'Dibe' || person.name === 'Clo' || person.name === 'Clara'
 
@@ -86,13 +88,15 @@ export default function PersonSplitPage({ params }: { params: { person: string }
 
         <section className="px-5 sm:px-8 md:px-16 pb-14">
           <p className="font-body text-[10px] uppercase tracking-[0.35em] text-[#FFCB00] mb-5">Pay now</p>
-          <div className="space-y-4 max-w-xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 w-full">
             {sends.length === 0 ? (
-              <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-                <p className="font-body text-sm text-white/55 leading-relaxed">
-                  {household
-                    ? 'NopeGali was paid by Clara for the household. No outgoing transfer on this page.'
-                    : 'Nothing to send.'}
+              <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 sm:col-span-2 xl:col-span-3">
+                <p className="font-body text-sm text-white/55 leading-relaxed max-w-2xl">
+                  {person.name === 'Clara'
+                    ? 'Your Blue Turtle to Yaa cancels her NopeGali to you — nothing to send.'
+                    : household
+                      ? 'NopeGali was paid by Clara for the household. No outgoing transfer on this page.'
+                      : 'Nothing to send.'}
                 </p>
               </div>
             ) : (
@@ -118,7 +122,7 @@ export default function PersonSplitPage({ params }: { params: { person: string }
         {receives.length > 0 && (
           <section className="px-5 sm:px-8 md:px-16 pb-14 border-t border-white/8 pt-14">
             <p className="font-body text-[10px] uppercase tracking-[0.35em] text-[#006A4E] mb-5">Coming in</p>
-            <div className="space-y-3 max-w-xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 w-full">
               {receives.map(r => (
                 <div
                   key={`${r.label}-${r.note}`}
@@ -133,31 +137,44 @@ export default function PersonSplitPage({ params }: { params: { person: string }
               ))}
             </div>
             {person.id === 'clara' && (
-              <p className="font-body text-xs text-white/40 mt-4 max-w-xl">
-                Collect on {PAYEES.clara.display}. Dibe & Clo’s lunch shares are already covered in your payment.
+              <p className="font-body text-xs text-white/40 mt-4">
+                Collect on {PAYEES.clara.display}. Yaa’s NopeGali cancels your Blue Turtle — nothing to send her.
+                Dibe & Clo’s lunch is already covered in your bill.
               </p>
             )}
             {person.id === 'yaa' && (
-              <p className="font-body text-xs text-white/40 mt-4 max-w-xl">
-                Collect on {PAYEES.yaa.display} · {PAYEES.yaa.via}. Fiifi’s share can stay inside the couple.
+              <p className="font-body text-xs text-white/40 mt-4">
+                Collect on {PAYEES.yaa.display} · {PAYEES.yaa.via}. Clara cancelled. Felix’s Blue Turtle is
+                netted off your road send. Fiifi’s share can stay inside the couple.
               </p>
             )}
             {person.id === 'abraham' && (
-              <p className="font-body text-xs text-white/40 mt-4 max-w-xl">
+              <p className="font-body text-xs text-white/40 mt-4">
                 Clo’s fuel is paid (₵280). Clara’s ₵130 fuel is already netted off your NopeGali send.
+              </p>
+            )}
+            {person.id === 'felix' && (
+              <p className="font-body text-xs text-white/40 mt-4">
+                You paid ₵1,200 road. Your Blue Turtle to Yaa is netted — collect ₵300 from Fiifi and the
+                netted amount from Yaa. Still send NopeGali to Clara.
               </p>
             )}
           </section>
         )}
 
-        <section className="px-5 sm:px-8 md:px-16 py-14 border-t border-white/8">
-          <p className="font-body text-[10px] uppercase tracking-[0.35em] text-white/35 mb-5">Your breakdown</p>
-          <div className="grid sm:grid-cols-2 gap-4 max-w-3xl mb-8">
+        <section className="px-5 sm:px-8 md:px-16 py-14 border-t border-white/8 pb-16">
+          <p className="font-body text-[10px] uppercase tracking-[0.35em] text-white/35 mb-2">Your breakdown</p>
+          <h2 className="font-display font-extrabold uppercase text-white mb-8" style={{ fontSize: 'clamp(1.2rem, 3vw, 1.8rem)' }}>
+            The calcs
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full mb-8">
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
               <p className="font-body text-[10px] uppercase tracking-widest text-white/35 mb-2">NopeGali</p>
               <p className="font-display font-bold text-white text-2xl">{formatGhs(toGhs(nopeCfa))}</p>
               <p className="font-body text-xs text-white/40 mt-2">
-                {household ? 'Covered by Clara’s bill' : `${nopeCfa.toLocaleString()} CFA`}
+                {household
+                  ? 'Covered by Clara’s bill'
+                  : `${nopeCfa.toLocaleString()} CFA ÷ ${RATE}`}
               </p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
@@ -168,37 +185,42 @@ export default function PersonSplitPage({ params }: { params: { person: string }
               <p className="font-body text-xs text-white/40 mt-2">
                 {onBlueTurtle
                   ? person.name === 'Yaa'
-                    ? 'You paid the bill'
-                    : 'Your share'
+                    ? `You paid 49,000 CFA · ${BLUE_TURTLE.eachCfa.toLocaleString()} CFA ÷ ${RATE}`
+                    : `49,000 ÷ 7 = ${BLUE_TURTLE.eachCfa.toLocaleString()} CFA ÷ ${RATE}`
                   : 'Not on this bill'}
               </p>
             </div>
           </div>
 
           {items.length > 0 && (
-            <div className="max-w-xl divide-y divide-white/8 rounded-2xl border border-white/10 overflow-hidden">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 w-full mb-8">
               {items.map((row, i) => (
-                <div key={`${row.items}-${i}`} className="flex justify-between gap-4 px-5 py-3">
-                  <p className="font-body text-sm text-white/80">{row.items}</p>
-                  <p className="font-body text-sm text-white/70">{formatGhs(toGhs(row.cfa))}</p>
+                <div
+                  key={`${row.items}-${i}`}
+                  className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 flex items-center justify-between gap-4"
+                >
+                  <div>
+                    <p className="font-body text-sm text-white/80">{row.items}</p>
+                    <p className="font-body text-[10px] text-white/35 mt-0.5">
+                      {row.cfa.toLocaleString()} CFA ÷ {RATE}
+                    </p>
+                  </div>
+                  <p className="font-body text-sm text-white/70 whitespace-nowrap">{formatGhs(toGhs(row.cfa))}</p>
                 </div>
               ))}
             </div>
           )}
-          <p className="font-body text-[10px] text-white/30 mt-6">Rate {RATE} CFA = ₵1</p>
-        </section>
 
-        <section className="px-5 sm:px-8 md:px-16 pb-16">
-          <p className="font-body text-[10px] uppercase tracking-widest text-white/30 mb-3">Others</p>
-          <div className="flex flex-wrap gap-2">
-            {PEOPLE.filter(p => p.id !== person.id).map(p => (
-              <Link
-                key={p.id}
-                href={`/trips/motuo/split/person/${p.id}`}
-                className="font-body text-xs uppercase tracking-widest px-3 py-1.5 rounded-full border border-white/12 text-white/40 hover:border-[#FFCB00]/40 hover:text-[#FFCB00] transition-colors"
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 w-full">
+            {calcSteps.map((step, i) => (
+              <div
+                key={`${step.label}-${i}`}
+                className="rounded-2xl border border-white/10 bg-white/[0.02] px-5 py-4"
               >
-                {p.name}
-              </Link>
+                <p className="font-body text-[10px] uppercase tracking-widest text-white/35 mb-1">{step.label}</p>
+                <p className="font-body text-sm text-white/60 leading-relaxed">{step.formula}</p>
+                <p className="font-display font-bold text-white text-lg mt-2">{step.result}</p>
+              </div>
             ))}
           </div>
         </section>

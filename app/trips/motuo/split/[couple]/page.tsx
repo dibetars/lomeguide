@@ -6,6 +6,7 @@ import CopyMoMo from '../CopyMoMo'
 import {
   BLUE_TURTLE,
   COUPLES,
+  FELIX_ROAD,
   NOPEGALI_ITEMS,
   PAYEES,
   RATE,
@@ -38,16 +39,23 @@ export default function CoupleSplitPage({ params }: { params: { couple: string }
   const receives: { label: string; ghs: number; note: string }[] = []
 
   // Clo’s fuel to Abraham is paid — nothing left to collect here.
+  if (id === 'felix-flora') {
+    receives.push({
+      label: 'From Yaa + Fiifi',
+      ghs: Math.round((FELIX_ROAD.shareGhs - toGhs(BLUE_TURTLE.eachCfa)) * 100) / 100,
+      note: 'Road half − Felix Blue Turtle net',
+    })
+  }
   if (id === 'yaa-fiifi') {
     receives.push(
-      { label: 'Felix + Flora', ghs: Math.round(toGhs(BLUE_TURTLE.eachCfa) * 2 * 100) / 100, note: 'Blue Turtle' },
+      { label: 'Flora', ghs: toGhs(BLUE_TURTLE.eachCfa), note: 'Blue Turtle (Felix netted vs road)' },
       { label: 'Abraham + Effiba', ghs: Math.round(toGhs(BLUE_TURTLE.eachCfa) * 2 * 100) / 100, note: 'Blue Turtle' },
-      { label: 'Clara', ghs: toGhs(BLUE_TURTLE.eachCfa), note: 'Blue Turtle' },
+      // Clara’s Blue Turtle cancelled against Yaa’s NopeGali
     )
   }
   if (id === 'dibe-clo-clara') {
     receives.push(
-      { label: 'Yaa + Fiifi', ghs: toGhs(18_500), note: 'NopeGali → Clara' },
+      { label: 'Fiifi', ghs: toGhs(11_500), note: 'NopeGali (Yaa cancelled vs Blue Turtle)' },
       { label: 'Felix + Flora', ghs: toGhs(18_500), note: 'NopeGali → Clara' },
       { label: 'Abraham + Effiba', ghs: Math.round((toGhs(16_500) - 130) * 100) / 100, note: 'NopeGali − fuel net' },
     )
@@ -104,9 +112,11 @@ export default function CoupleSplitPage({ params }: { params: { couple: string }
         {/* What to send */}
         <section className="px-5 sm:px-8 md:px-16 pb-14">
           <p className="font-body text-[10px] uppercase tracking-[0.35em] text-[#FFCB00] mb-5">Pay now</p>
-          <div className="space-y-4 max-w-xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 w-full">
             {sends.length === 0 ? (
-              <p className="font-body text-sm text-white/45">Nothing to send from this couple on the shared list.</p>
+              <p className="font-body text-sm text-white/45 sm:col-span-2 xl:col-span-3">
+                Nothing to send from this couple on the shared list.
+              </p>
             ) : (
               sends.map(p => {
                 const payee = PAYEES[p.to]
@@ -131,7 +141,7 @@ export default function CoupleSplitPage({ params }: { params: { couple: string }
         {receives.length > 0 && (
           <section className="px-5 sm:px-8 md:px-16 pb-14 border-t border-white/8 pt-14">
             <p className="font-body text-[10px] uppercase tracking-[0.35em] text-[#006A4E] mb-5">Coming in</p>
-            <div className="space-y-3 max-w-xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 w-full">
               {receives.map(r => (
                 <div
                   key={`${r.label}-${r.note}`}
@@ -146,12 +156,12 @@ export default function CoupleSplitPage({ params }: { params: { couple: string }
               ))}
             </div>
             {id === 'dibe-clo-clara' && (
-              <p className="font-body text-xs text-white/40 mt-4 max-w-xl">
+              <p className="font-body text-xs text-white/40 mt-4">
                 Collect NopeGali on {PAYEES.clara.display}. Clo’s fuel to Abraham is already paid.
               </p>
             )}
             {id === 'yaa-fiifi' && (
-              <p className="font-body text-xs text-white/40 mt-4 max-w-xl">
+              <p className="font-body text-xs text-white/40 mt-4">
                 Fiifi’s own Blue Turtle share ({formatGhs(toGhs(BLUE_TURTLE.eachCfa))}) stays inside the couple.
               </p>
             )}
@@ -159,15 +169,15 @@ export default function CoupleSplitPage({ params }: { params: { couple: string }
         )}
 
         {/* Breakdown */}
-        <section className="px-5 sm:px-8 md:px-16 py-14 border-t border-white/8">
+        <section className="px-5 sm:px-8 md:px-16 py-14 border-t border-white/8 pb-16">
           <p className="font-body text-[10px] uppercase tracking-[0.35em] text-white/35 mb-5">Breakdown</p>
 
-          <div className="grid sm:grid-cols-2 gap-4 max-w-3xl mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full mb-8">
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
               <p className="font-body text-[10px] uppercase tracking-widest text-white/35 mb-2">NopeGali share</p>
               <p className="font-display font-bold text-white text-2xl">{formatGhs(toGhs(nopeCfa))}</p>
               <p className="font-body text-xs text-white/40 mt-2">
-                {id === 'abraham-effiba' ? 'Includes 5th bière · fuel ₵130 netted on payout' : `${nopeCfa.toLocaleString()} CFA`}
+                {id === 'abraham-effiba' ? 'Includes couple bière · fuel ₵130 netted on payout' : `${nopeCfa.toLocaleString()} CFA`}
               </p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
@@ -183,14 +193,17 @@ export default function CoupleSplitPage({ params }: { params: { couple: string }
             </div>
           </div>
 
-          <div className="max-w-xl divide-y divide-white/8 rounded-2xl border border-white/10 overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 w-full">
             {memberItems.map((row, i) => (
-              <div key={`${row.person}-${i}`} className="flex justify-between gap-4 px-5 py-3">
+              <div
+                key={`${row.person}-${i}`}
+                className="rounded-2xl border border-white/10 bg-white/[0.03] flex justify-between gap-4 px-5 py-4"
+              >
                 <div>
                   <p className="font-body text-sm text-white">{row.person}</p>
                   <p className="font-body text-xs text-white/40">{row.items}</p>
                 </div>
-                <p className="font-body text-sm text-white/70">{formatGhs(toGhs(row.cfa))}</p>
+                <p className="font-body text-sm text-white/70 whitespace-nowrap">{formatGhs(toGhs(row.cfa))}</p>
               </div>
             ))}
           </div>

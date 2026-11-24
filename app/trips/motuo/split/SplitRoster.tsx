@@ -20,7 +20,7 @@ export default function SplitRoster() {
 
   return (
     <section className="px-5 sm:px-8 md:px-16 pb-14">
-      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6 max-w-5xl">
+      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6 w-full">
         <p className="font-body text-[10px] uppercase tracking-[0.35em] text-white/35">
           {mode === 'people' ? 'Everyone' : 'By couple'}
         </p>
@@ -59,7 +59,7 @@ export default function SplitRoster() {
       </div>
 
       {mode === 'people' ? (
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 max-w-5xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 w-full">
           {PEOPLE.map(p => {
             const sends = personPayouts(p.id as PersonId).filter(
               x => !(x.from === 'Fiifi' && x.to === 'yaa'),
@@ -98,7 +98,7 @@ export default function SplitRoster() {
           })}
         </div>
       ) : (
-        <div className="grid sm:grid-cols-2 gap-3 max-w-5xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
           {COUPLES.map(c => {
             const sends = payoutsForCouple(c.id as CoupleId).filter(
               x => !(x.from === 'Fiifi' && x.to === 'yaa'),
