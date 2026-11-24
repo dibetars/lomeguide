@@ -1,7 +1,7 @@
-import Link from 'next/link'
 import Nav from '../../../components/Nav'
 import Footer from '../../../components/Footer'
 import CopyMoMo from './CopyMoMo'
+import SplitRoster from './SplitRoster'
 import {
   BLUE_TURTLE,
   NOPEGALI_ITEMS,
@@ -11,7 +11,6 @@ import {
   formatGhs,
   personPayouts,
   toGhs,
-  type PersonId,
 } from './data'
 
 export const metadata = {
@@ -52,48 +51,7 @@ export default function MotuoSplitPage() {
           </div>
         </section>
 
-        {/* People */}
-        <section className="px-5 sm:px-8 md:px-16 pb-14">
-          <p className="font-body text-[10px] uppercase tracking-[0.35em] text-white/35 mb-5">Everyone</p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 max-w-5xl">
-            {PEOPLE.map(p => {
-              const sends = personPayouts(p.id as PersonId).filter(
-                x => !(x.from === 'Fiifi' && x.to === 'yaa'),
-              )
-              const totalOut = sends.reduce((s, x) => s + x.ghs, 0)
-              return (
-                <Link
-                  key={p.id}
-                  href={`/trips/motuo/split/person/${p.id}`}
-                  className="group rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-5 hover:border-[#FFCB00]/40 transition-colors"
-                >
-                  <div className="flex items-start justify-between gap-2 mb-3">
-                    <p className="font-display font-bold text-white text-lg group-hover:text-[#FFCB00] transition-colors">
-                      {p.name}
-                    </p>
-                    <span className="text-white/25 group-hover:text-[#FFCB00]">→</span>
-                  </div>
-                  <p className="font-hero italic font-black text-white text-3xl">{formatGhs(totalOut)}</p>
-                  <p className="font-body text-[10px] uppercase tracking-widest text-white/35 mt-1 mb-4">to send</p>
-                  {sends.length === 0 ? (
-                    <p className="font-body text-xs text-white/40">Nothing to send</p>
-                  ) : (
-                    <ul className="space-y-1.5">
-                      {sends.map(s => (
-                        <li key={`${s.to}-${s.note}`} className="flex items-baseline justify-between gap-2">
-                          <span className="font-body text-xs text-white/55">
-                            → <span className="text-[#FFCB00]">{PAYEES[s.to].label}</span>
-                          </span>
-                          <span className="font-body text-xs text-white/80">{formatGhs(s.ghs)}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </Link>
-              )
-            })}
-          </div>
-        </section>
+        <SplitRoster />
 
         {/* Payout summary */}
         <section className="px-5 sm:px-8 md:px-16 py-14 border-t border-white/8">
@@ -183,8 +141,8 @@ export default function MotuoSplitPage() {
           <div className="grid sm:grid-cols-2 gap-4 max-w-3xl">
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
               <p className="font-body text-xs text-white/45 mb-2">Clo → Abraham</p>
-              <p className="font-hero italic font-black text-white text-4xl">{formatGhs(200)}</p>
-              <p className="font-body text-xs text-white/40 mt-3">Send to {PAYEES.abraham.display}</p>
+              <p className="font-hero italic font-black text-white/35 text-4xl line-through">{formatGhs(200)}</p>
+              <p className="font-body text-xs text-[#FFCB00] mt-3">Paid ₵280 · settled</p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
               <p className="font-body text-xs text-white/45 mb-2">Clara → Abraham</p>

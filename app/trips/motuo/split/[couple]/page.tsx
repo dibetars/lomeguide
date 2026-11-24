@@ -37,9 +37,7 @@ export default function CoupleSplitPage({ params }: { params: { couple: string }
   const sends = payoutsForCouple(id).filter(p => !(p.from === 'Fiifi' && p.to === 'yaa'))
   const receives: { label: string; ghs: number; note: string }[] = []
 
-  if (id === 'abraham-effiba') {
-    receives.push({ label: 'From Clo', ghs: 200, note: 'Fuel → Abraham' })
-  }
+  // Clo’s fuel to Abraham is paid — nothing left to collect here.
   if (id === 'yaa-fiifi') {
     receives.push(
       { label: 'Felix + Flora', ghs: Math.round(toGhs(BLUE_TURTLE.eachCfa) * 2 * 100) / 100, note: 'Blue Turtle' },
@@ -149,7 +147,7 @@ export default function CoupleSplitPage({ params }: { params: { couple: string }
             </div>
             {id === 'dibe-clo-clara' && (
               <p className="font-body text-xs text-white/40 mt-4 max-w-xl">
-                Collect NopeGali on {PAYEES.clara.display}. Clo still sends fuel to Abraham separately above.
+                Collect NopeGali on {PAYEES.clara.display}. Clo’s fuel to Abraham is already paid.
               </p>
             )}
             {id === 'yaa-fiifi' && (

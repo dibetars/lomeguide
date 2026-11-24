@@ -144,7 +144,7 @@ export default function PersonSplitPage({ params }: { params: { person: string }
             )}
             {person.id === 'abraham' && (
               <p className="font-body text-xs text-white/40 mt-4 max-w-xl">
-                Collect Clo’s fuel on {PAYEES.abraham.display}. Clara’s ₵130 fuel is already netted off your NopeGali send.
+                Clo’s fuel is paid (₵280). Clara’s ₵130 fuel is already netted off your NopeGali send.
               </p>
             )}
           </section>

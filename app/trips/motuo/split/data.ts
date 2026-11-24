@@ -93,8 +93,15 @@ export const BLUE_TURTLE = {
   eachCfa: 7_000,
 }
 
-export const FUEL_GHS: { from: Person; to: Person; ghs: number; netted?: boolean }[] = [
-  { from: 'Clo', to: 'Abraham', ghs: 200 },
+export const FUEL_GHS: {
+  from: Person
+  to: Person
+  ghs: number
+  netted?: boolean
+  paid?: boolean
+  paidGhs?: number
+}[] = [
+  { from: 'Clo', to: 'Abraham', ghs: 200, paid: true, paidGhs: 280 },
   { from: 'Clara', to: 'Abraham', ghs: 130, netted: true },
 ]
 
@@ -122,13 +129,13 @@ export const COUPLES: Couple[] = [
     id: 'abraham-effiba',
     name: 'Abraham + Effiba',
     members: ['Abraham', 'Effiba'],
-    blurb: 'NopeGali netted with Clara’s fuel. Abraham collects Clo’s fuel.',
+    blurb: 'NopeGali netted with Clara’s fuel. Clo’s fuel is settled.',
   },
   {
     id: 'dibe-clo-clara',
     name: 'Dibe + Clo + Clara',
     members: ['Dibe', 'Clo', 'Clara'],
-    blurb: 'Clara paid NopeGali. Clo still owes Abraham fuel.',
+    blurb: 'Clara paid NopeGali. Clo’s fuel to Abraham is paid.',
   },
 ]
 
@@ -193,14 +200,6 @@ export function allPayouts(): Payout[] {
       ghs: Math.round((toGhs(16_500) - 130) * 100) / 100,
       note: 'NopeGali − Clara fuel ₵130',
       coupleId: 'abraham-effiba',
-    },
-    {
-      from: 'Clo',
-      to: 'abraham',
-      ghs: 200,
-      note: 'Fuel',
-      coupleId: 'dibe-clo-clara',
-      personId: 'clo',
     },
     {
       from: 'Felix + Flora',
@@ -269,18 +268,8 @@ export function personPayouts(personId: PersonId): Payout[] {
     }
   }
 
-  // For Dibe & Clo — NopeGali is within Clara's household (already paid). Optional show as 0.
-  // Clo fuel
-  if (name === 'Clo') {
-    out.push({
-      from: 'Clo',
-      to: 'abraham',
-      ghs: 200,
-      note: 'Fuel',
-      personId: 'clo',
-      coupleId: 'dibe-clo-clara',
-    })
-  }
+  // For Dibe & Clo — NopeGali is within Clara's household (already paid).
+  // Clo fuel: paid ₵280 to Abraham (owed ₵200 → settled).
 
   // Blue Turtle → Yaa
   if (BLUE_TURTLE.drinkers.includes(name) && name !== 'Yaa') {
@@ -300,7 +289,7 @@ export function personPayouts(personId: PersonId): Payout[] {
 export function personReceives(personId: PersonId): { label: string; ghs: number; note: string }[] {
   const bt = toGhs(BLUE_TURTLE.eachCfa)
   if (personId === 'abraham') {
-    return [{ label: 'From Clo', ghs: 200, note: 'Fuel' }]
+    return []
   }
   if (personId === 'yaa') {
     return [
