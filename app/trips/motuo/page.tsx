@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import BaguidaStays from '../../components/BaguidaStays'
@@ -38,6 +39,13 @@ export default function MoutoTrip() {
                 </span>
               ))}
             </div>
+            <Link
+              href="/trips/motuo/split"
+              className="mt-8 inline-flex items-center gap-3 bg-[#FFCB00] text-[#1A1508] pl-5 pr-1.5 py-1.5 rounded-full font-body text-sm font-semibold hover:bg-white transition-colors"
+            >
+              <span>Open the split</span>
+              <span className="w-8 h-8 bg-[#1A1508] text-[#FFCB00] rounded-full flex items-center justify-center text-base">→</span>
+            </Link>
           </div>
         </section>
 
