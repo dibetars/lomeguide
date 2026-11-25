@@ -149,12 +149,15 @@ export default function PersonSplitPage({ params }: { params: { person: string }
                 netted off your road send. Fiifi’s share can stay inside the couple.
               </p>
             )}
-            {person.id === 'felix' && (
-              <p className="font-body text-xs text-white/40 mt-4">
-                You paid ₵1,200 road. Your Blue Turtle to Yaa is netted — collect ₵300 from Fiifi and the
-                netted amount from Yaa. Still send NopeGali to Clara.
-              </p>
-            )}
+          </section>
+        )}
+
+        {person.id === 'felix' && (
+          <section className="px-5 sm:px-8 md:px-16 pb-6">
+            <p className="font-body text-xs text-white/40 max-w-2xl">
+              Yaa + Fiifi’s road half is settled (Fiifi ₵500 MoMo + ₵100 misc snacks). Nothing left to
+              collect from them — only send NopeGali to Clara above.
+            </p>
           </section>
         )}
 

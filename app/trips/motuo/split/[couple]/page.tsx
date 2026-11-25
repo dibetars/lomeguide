@@ -6,7 +6,7 @@ import CopyMoMo from '../CopyMoMo'
 import {
   BLUE_TURTLE,
   COUPLES,
-  FELIX_ROAD,
+  FIIFI_CLARA_REMAINING_GHS,
   NOPEGALI_ITEMS,
   PAYEES,
   RATE,
@@ -39,13 +39,7 @@ export default function CoupleSplitPage({ params }: { params: { couple: string }
   const receives: { label: string; ghs: number; note: string }[] = []
 
   // Clo’s fuel to Abraham is paid — nothing left to collect here.
-  if (id === 'felix-flora') {
-    receives.push({
-      label: 'From Yaa + Fiifi',
-      ghs: Math.round((FELIX_ROAD.shareGhs - toGhs(BLUE_TURTLE.eachCfa)) * 100) / 100,
-      note: 'Road half − Felix Blue Turtle net',
-    })
-  }
+  // Felix road from Yaa + Fiifi settled (Fiifi ₵500 MoMo + ₵100 misc snacks)
   if (id === 'yaa-fiifi') {
     receives.push(
       { label: 'Flora', ghs: toGhs(BLUE_TURTLE.eachCfa), note: 'Blue Turtle (Felix netted vs road)' },
@@ -55,7 +49,7 @@ export default function CoupleSplitPage({ params }: { params: { couple: string }
   }
   if (id === 'dibe-clo-clara') {
     receives.push(
-      { label: 'Fiifi', ghs: toGhs(11_500), note: 'NopeGali (Yaa cancelled vs Blue Turtle)' },
+      { label: 'Fiifi', ghs: FIIFI_CLARA_REMAINING_GHS, note: 'NopeGali remaining (credits for her behalf)' },
       { label: 'Felix + Flora', ghs: toGhs(18_500), note: 'NopeGali → Clara' },
       // Abraham + Effiba settled via border + snacks — not collecting
     )

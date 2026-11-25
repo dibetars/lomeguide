@@ -9,11 +9,9 @@ import {
   PAYEES,
   PEOPLE,
   RATE,
-  blueTurtleGhs,
   formatGhs,
   personPayouts,
   toGhs,
-  yaaToFelixNettedGhs,
 } from './data'
 
 export const metadata = {
@@ -142,19 +140,24 @@ export default function MotuoSplitPage() {
             Felix paid
           </h2>
           <p className="font-body text-sm text-white/45 mb-8">
-            Fuel ₵{FELIX_ROAD.fuelGhs} + border ₵{FELIX_ROAD.borderGhs} = ₵{FELIX_ROAD.totalGhs.toLocaleString()} · Fiifi & Yaa cover half
+            Fuel ₵{FELIX_ROAD.fuelGhs} + border ₵{FELIX_ROAD.borderGhs} = ₵{FELIX_ROAD.totalGhs.toLocaleString()} ·
+            Fiifi & Yaa cover half (₵{FELIX_ROAD.shareGhs})
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-              <p className="font-body text-xs text-white/45 mb-2">Fiifi → Felix</p>
-              <p className="font-hero italic font-black text-white text-4xl">{formatGhs(FELIX_ROAD.eachGhs)}</p>
-              <p className="font-body text-xs text-white/40 mt-3">{PAYEES.felix.display}</p>
+              <p className="font-body text-xs text-white/45 mb-2">Fiifi → Felix (MoMo)</p>
+              <p className="font-hero italic font-black text-white/35 text-4xl line-through">
+                {formatGhs(FELIX_ROAD.fiifiPaidGhs)}
+              </p>
+              <p className="font-body text-xs text-[#FFCB00] mt-3">Paid for the couple · settled</p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-              <p className="font-body text-xs text-white/45 mb-2">Yaa → Felix (netted)</p>
-              <p className="font-hero italic font-black text-white text-4xl">{formatGhs(yaaToFelixNettedGhs())}</p>
+              <p className="font-body text-xs text-white/45 mb-2">Fiifi → Felix (misc snacks)</p>
+              <p className="font-hero italic font-black text-white/35 text-4xl line-through">
+                {formatGhs(FELIX_ROAD.fiifiSnacksGhs)}
+              </p>
               <p className="font-body text-xs text-[#FFCB00] mt-3">
-                ₵{FELIX_ROAD.eachGhs} road − ₵{blueTurtleGhs().toFixed(2)} Felix Blue Turtle
+                Miscellaneous snacks · closes the ₵{FELIX_ROAD.shareGhs} couple half
               </p>
             </div>
           </div>

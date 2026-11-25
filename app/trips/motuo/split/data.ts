@@ -63,7 +63,7 @@ export const PAYEES = {
   },
 } as const
 
-/** Felix paid fuel + border; Fiifi & Yaa cover half */
+/** Felix paid fuel + border; Fiifi & Yaa cover half — fully settled */
 export const FELIX_ROAD = {
   fuelGhs: 800,
   borderGhs: 400,
@@ -72,7 +72,14 @@ export const FELIX_ROAD = {
   eachGhs: 300, // per person if split inside the couple
   paidBy: 'Felix' as Person,
   owedBy: ['Fiifi', 'Yaa'] as Person[],
-}
+  /** Fiifi paid ₵500 MoMo toward the couple’s ₵600 half */
+  fiifiPaidGhs: 500,
+  /** Fiifi covered the last ₵100 as miscellaneous snacks */
+  fiifiSnacksGhs: 100,
+} as const
+
+/** Fiifi still owes Clara this after credits for things he paid on her behalf */
+export const FIIFI_CLARA_REMAINING_GHS = 100
 
 /** Base NopeGali food/drink shares in CFA (5th beer tracked separately on Abraham) */
 export const NOPEGALI_SHARES_CFA: Record<Person, number> = {
@@ -132,13 +139,13 @@ export const COUPLES: Couple[] = [
     id: 'yaa-fiifi',
     name: 'Yaa + Fiifi',
     members: ['Yaa', 'Fiifi'],
-    blurb: 'Yaa paid Blue Turtle. Owe Felix ₵600 road (fuel + border).',
+    blurb: 'Yaa paid Blue Turtle. Fiifi settled Felix road (₵500 + ₵100 snacks).',
   },
   {
     id: 'felix-flora',
     name: 'Felix + Flora',
     members: ['Felix', 'Flora'],
-    blurb: 'Felix paid ₵1,200 road — collects ₵600 from Yaa + Fiifi.',
+    blurb: 'Felix paid ₵1,200 road — Yaa + Fiifi half settled by Fiifi (₵500 + snacks).',
   },
   {
     id: 'abraham-effiba',
@@ -195,9 +202,9 @@ export function blueTurtleGhs(): number {
   return toGhs(BLUE_TURTLE.eachCfa)
 }
 
-/** Felix ↔ Yaa: road ₵300 − Blue Turtle ₵137.25 → Yaa pays Felix the difference */
+/** Couple road to Felix is fully settled (Fiifi ₵500 MoMo + ₵100 misc snacks). */
 export function yaaToFelixNettedGhs(): number {
-  return Math.round((FELIX_ROAD.eachGhs - blueTurtleGhs()) * 100) / 100
+  return 0
 }
 
 export function allPayouts(): Payout[] {
@@ -206,8 +213,8 @@ export function allPayouts(): Payout[] {
     {
       from: 'Yaa + Fiifi',
       to: 'clara',
-      ghs: toGhs(11_500), // Fiifi only — Yaa’s NopeGali cancels Clara’s Blue Turtle
-      note: 'NopeGali (Fiifi) · Yaa↔Clara cancelled',
+      ghs: FIIFI_CLARA_REMAINING_GHS, // Fiifi remaining after credits · Yaa↔Clara cancelled
+      note: 'NopeGali (Fiifi remaining) · Yaa↔Clara cancelled',
       coupleId: 'yaa-fiifi',
     },
     {
@@ -241,13 +248,7 @@ export function allPayouts(): Payout[] {
       coupleId: 'yaa-fiifi',
       personId: 'fiifi',
     },
-    {
-      from: 'Yaa + Fiifi',
-      to: 'felix',
-      ghs: Math.round((FELIX_ROAD.shareGhs - bt) * 100) / 100, // 600 − 137.25
-      note: 'Road half − Felix Blue Turtle net',
-      coupleId: 'yaa-fiifi',
-    },
+    // Yaa + Fiifi → Felix road settled: Fiifi ₵500 MoMo + ₵100 misc snacks
   ]
 }
 
@@ -269,14 +270,25 @@ export function personPayouts(personId: PersonId): Payout[] {
     name !== 'Abraham' &&
     name !== 'Effiba'
   ) {
-    out.push({
-      from: name,
-      to: 'clara',
-      ghs: toGhs(personNopeCfa(name)),
-      note: 'NopeGali lunch',
-      personId,
-      coupleId: person.coupleId,
-    })
+    if (name === 'Fiifi') {
+      out.push({
+        from: name,
+        to: 'clara',
+        ghs: FIIFI_CLARA_REMAINING_GHS,
+        note: 'NopeGali remaining (credits for things paid on Clara’s behalf)',
+        personId,
+        coupleId: person.coupleId,
+      })
+    } else {
+      out.push({
+        from: name,
+        to: 'clara',
+        ghs: toGhs(personNopeCfa(name)),
+        note: 'NopeGali lunch',
+        personId,
+        coupleId: person.coupleId,
+      })
+    }
   }
 
   // Blue Turtle → Yaa
@@ -292,27 +304,7 @@ export function personPayouts(personId: PersonId): Payout[] {
     })
   }
 
-  // Felix road — Fiifi pays full ₵300; Yaa pays net after Felix’s Blue Turtle
-  if (name === 'Fiifi') {
-    out.push({
-      from: name,
-      to: 'felix',
-      ghs: FELIX_ROAD.eachGhs,
-      note: 'Road — fuel + border (half of ₵1,200 ÷ 2)',
-      personId,
-      coupleId: person.coupleId,
-    })
-  }
-  if (name === 'Yaa') {
-    out.push({
-      from: name,
-      to: 'felix',
-      ghs: yaaToFelixNettedGhs(),
-      note: `Road ₵${FELIX_ROAD.eachGhs} − Felix Blue Turtle ₵${bt.toFixed(2)}`,
-      personId,
-      coupleId: person.coupleId,
-    })
-  }
+  // Felix road — settled by Fiifi (₵500 MoMo + ₵100 misc snacks); nothing left to send
 
   return out
 }
@@ -323,14 +315,8 @@ export function personReceives(personId: PersonId): { label: string; ghs: number
     return []
   }
   if (personId === 'felix') {
-    return [
-      { label: 'Fiifi', ghs: FELIX_ROAD.eachGhs, note: 'Road — fuel + border' },
-      {
-        label: 'Yaa',
-        ghs: yaaToFelixNettedGhs(),
-        note: `Road − your Blue Turtle ₵${bt.toFixed(2)}`,
-      },
-    ]
+    // Yaa + Fiifi road half settled (Fiifi ₵500 MoMo + ₵100 misc snacks)
+    return []
   }
   if (personId === 'yaa') {
     return [
@@ -344,7 +330,11 @@ export function personReceives(personId: PersonId): { label: string; ghs: number
   }
   if (personId === 'clara') {
     return [
-      { label: 'Fiifi', ghs: toGhs(11_500), note: 'NopeGali' },
+      {
+        label: 'Fiifi',
+        ghs: FIIFI_CLARA_REMAINING_GHS,
+        note: 'NopeGali remaining (he paid some on your behalf)',
+      },
       // Yaa cancelled against Clara → Yaa Blue Turtle
       { label: 'Felix', ghs: toGhs(10_500), note: 'NopeGali' },
       { label: 'Flora', ghs: toGhs(8_000), note: 'NopeGali' },
@@ -410,6 +400,17 @@ export function personCalcSteps(personId: PersonId): CalcStep[] {
       formula: `${nopeCfa.toLocaleString()} CFA ÷ ${RATE} = ${formatGhs(nopeGhs)}`,
       result: 'Cancelled vs Clara Blue Turtle',
     })
+  } else if (name === 'Fiifi') {
+    steps.push({
+      label: 'NopeGali → Clara (gross)',
+      formula: `${nopeCfa.toLocaleString()} CFA ÷ ${RATE}`,
+      result: formatGhs(nopeGhs),
+    })
+    steps.push({
+      label: 'NopeGali → Clara (remaining)',
+      formula: `${formatGhs(nopeGhs)} − credits for things paid on Clara’s behalf`,
+      result: formatGhs(FIIFI_CLARA_REMAINING_GHS),
+    })
   } else if (name === 'Clara' || name === 'Dibe' || name === 'Clo') {
     steps.push({
       label: 'NopeGali',
@@ -469,22 +470,26 @@ export function personCalcSteps(personId: PersonId): CalcStep[] {
   // Road / fuel
   if (name === 'Fiifi') {
     steps.push({
-      label: 'Road → Felix',
-      formula: `(₵${FELIX_ROAD.fuelGhs} fuel + ₵${FELIX_ROAD.borderGhs} border) ÷ 2 couples = ₵${FELIX_ROAD.shareGhs} · ÷ 2 people`,
-      result: formatGhs(FELIX_ROAD.eachGhs),
+      label: 'Road → Felix (couple half)',
+      formula: `₵${FELIX_ROAD.shareGhs} couple share of fuel + border`,
+      result: formatGhs(FELIX_ROAD.shareGhs),
+    })
+    steps.push({
+      label: 'Road → Felix (MoMo)',
+      formula: `Paid ₵${FELIX_ROAD.fiifiPaidGhs} for the couple`,
+      result: formatGhs(FELIX_ROAD.fiifiPaidGhs),
+    })
+    steps.push({
+      label: 'Misc snacks → Felix',
+      formula: `₵${FELIX_ROAD.fiifiSnacksGhs} miscellaneous snacks (you paid)`,
+      result: 'Closes couple road balance',
     })
   }
   if (name === 'Yaa') {
-    const net = yaaToFelixNettedGhs()
     steps.push({
-      label: 'Road → Felix (gross)',
-      formula: `(₵${FELIX_ROAD.fuelGhs} + ₵${FELIX_ROAD.borderGhs}) ÷ 2 ÷ 2`,
-      result: formatGhs(FELIX_ROAD.eachGhs),
-    })
-    steps.push({
-      label: 'Road → Felix (net)',
-      formula: `${formatGhs(FELIX_ROAD.eachGhs)} − Felix Blue Turtle ${formatGhs(bt)}`,
-      result: formatGhs(net),
+      label: 'Road → Felix',
+      formula: `Couple ₵${FELIX_ROAD.shareGhs} · Fiifi paid ₵${FELIX_ROAD.fiifiPaidGhs} + ₵${FELIX_ROAD.fiifiSnacksGhs} snacks`,
+      result: 'Settled — nothing to send',
     })
     steps.push({
       label: 'Yaa ↔ Clara net',
@@ -499,14 +504,14 @@ export function personCalcSteps(personId: PersonId): CalcStep[] {
       result: formatGhs(FELIX_ROAD.totalGhs),
     })
     steps.push({
-      label: 'Collect from Fiifi',
-      formula: `₵${FELIX_ROAD.shareGhs} couple half ÷ 2`,
-      result: formatGhs(FELIX_ROAD.eachGhs),
+      label: 'From Fiifi (MoMo)',
+      formula: `₵${FELIX_ROAD.fiifiPaidGhs} toward couple’s ₵${FELIX_ROAD.shareGhs}`,
+      result: 'Received',
     })
     steps.push({
-      label: 'Collect from Yaa (net)',
-      formula: `${formatGhs(FELIX_ROAD.eachGhs)} − your Blue Turtle ${formatGhs(bt)}`,
-      result: formatGhs(yaaToFelixNettedGhs()),
+      label: 'From Fiifi (misc snacks)',
+      formula: `₵${FELIX_ROAD.fiifiSnacksGhs} miscellaneous snacks`,
+      result: 'Couple road closed',
     })
   }
   if (name === 'Clo') {
@@ -521,6 +526,11 @@ export function personCalcSteps(personId: PersonId): CalcStep[] {
       label: 'Abraham + Effiba NopeGali',
       formula: `${formatGhs(toGhs(16_500))} lunch (+ ₵130 fuel)`,
       result: 'Settled — border + snacks agreement',
+    })
+    steps.push({
+      label: 'Fiifi NopeGali remaining',
+      formula: `${formatGhs(toGhs(11_500))} − credits for things he paid on your behalf`,
+      result: formatGhs(FIIFI_CLARA_REMAINING_GHS),
     })
     steps.push({
       label: 'Yaa ↔ Clara net',
