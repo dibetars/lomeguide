@@ -175,7 +175,7 @@ export default function MotuoSplitPage() {
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
               <p className="font-body text-xs text-white/45 mb-2">Clara → Abraham</p>
               <p className="font-hero italic font-black text-white/35 text-4xl line-through">{formatGhs(130)}</p>
-              <p className="font-body text-xs text-[#FFCB00] mt-3">Netted into Abraham’s NopeGali payment</p>
+              <p className="font-body text-xs text-[#FFCB00] mt-3">Settled with NopeGali via border + snacks</p>
             </div>
           </div>
         </section>
@@ -183,7 +183,7 @@ export default function MotuoSplitPage() {
         <section className="px-5 sm:px-8 md:px-16 py-10 border-t border-white/8">
           <p className="font-body text-xs text-white/30">
             Rate {RATE} CFA / GHS · Nets applied: Yaa↔Clara cancel · Felix Blue Turtle nets into Yaa→Felix road ·
-            Fiifi→Yaa Blue Turtle same-couple omitted · Abraham NopeGali already nets Clara fuel ₵130.
+            Fiifi→Yaa Blue Turtle same-couple omitted · Abraham + Effiba NopeGali settled via border + snacks.
           </p>
         </section>
       </main>

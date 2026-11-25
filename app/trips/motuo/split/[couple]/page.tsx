@@ -57,7 +57,7 @@ export default function CoupleSplitPage({ params }: { params: { couple: string }
     receives.push(
       { label: 'Fiifi', ghs: toGhs(11_500), note: 'NopeGali (Yaa cancelled vs Blue Turtle)' },
       { label: 'Felix + Flora', ghs: toGhs(18_500), note: 'NopeGali → Clara' },
-      { label: 'Abraham + Effiba', ghs: Math.round((toGhs(16_500) - 130) * 100) / 100, note: 'NopeGali − fuel net' },
+      // Abraham + Effiba settled via border + snacks — not collecting
     )
   }
 
@@ -157,7 +157,7 @@ export default function CoupleSplitPage({ params }: { params: { couple: string }
             </div>
             {id === 'dibe-clo-clara' && (
               <p className="font-body text-xs text-white/40 mt-4">
-                Collect NopeGali on {PAYEES.clara.display}. Clo’s fuel to Abraham is already paid.
+                Collect NopeGali on {PAYEES.clara.display}. Abraham + Effiba settled via border + snacks.
               </p>
             )}
             {id === 'yaa-fiifi' && (
@@ -177,7 +177,9 @@ export default function CoupleSplitPage({ params }: { params: { couple: string }
               <p className="font-body text-[10px] uppercase tracking-widest text-white/35 mb-2">NopeGali share</p>
               <p className="font-display font-bold text-white text-2xl">{formatGhs(toGhs(nopeCfa))}</p>
               <p className="font-body text-xs text-white/40 mt-2">
-                {id === 'abraham-effiba' ? 'Includes couple bière · fuel ₵130 netted on payout' : `${nopeCfa.toLocaleString()} CFA`}
+                {id === 'abraham-effiba'
+                  ? 'Covered by border + snacks agreement — no MoMo to Clara'
+                  : `${nopeCfa.toLocaleString()} CFA`}
               </p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">

@@ -116,7 +116,8 @@ export const FUEL_GHS: {
   paidGhs?: number
 }[] = [
   { from: 'Clo', to: 'Abraham', ghs: 200, paid: true, paidGhs: 280 },
-  { from: 'Clara', to: 'Abraham', ghs: 130, netted: true },
+  // Clara’s ₵130 fuel settled with Abraham/Effiba via border + snacks agreement (no MoMo)
+  { from: 'Clara', to: 'Abraham', ghs: 130, paid: true, paidGhs: 0 },
 ]
 
 export type Couple = {
@@ -143,13 +144,13 @@ export const COUPLES: Couple[] = [
     id: 'abraham-effiba',
     name: 'Abraham + Effiba',
     members: ['Abraham', 'Effiba'],
-    blurb: 'NopeGali netted with Clara’s fuel. Clo’s fuel is settled.',
+    blurb: 'NopeGali covered by border + snacks agreement. Only Blue Turtle left.',
   },
   {
     id: 'dibe-clo-clara',
     name: 'Dibe + Clo + Clara',
     members: ['Dibe', 'Clo', 'Clara'],
-    blurb: 'Clara paid NopeGali. Clo’s fuel to Abraham is paid.',
+    blurb: 'Clara paid NopeGali. Abraham/Effiba settled separately (border + snacks).',
   },
 ]
 
@@ -216,13 +217,7 @@ export function allPayouts(): Payout[] {
       note: 'NopeGali lunch',
       coupleId: 'felix-flora',
     },
-    {
-      from: 'Abraham + Effiba',
-      to: 'clara',
-      ghs: Math.round((toGhs(16_500) - 130) * 100) / 100,
-      note: 'NopeGali − Clara fuel ₵130',
-      coupleId: 'abraham-effiba',
-    },
+    // Abraham + Effiba → Clara NopeGali settled via border + snacks agreement
     {
       from: 'Felix + Flora',
       to: 'yaa',
@@ -264,31 +259,24 @@ export function personPayouts(personId: PersonId): Payout[] {
   const bt = blueTurtleGhs()
   const out: Payout[] = []
 
-  // NopeGali → Clara (trio members already covered by Clara paying)
-  // Yaa’s NopeGali cancels Clara’s Blue Turtle — skip Yaa → Clara
-  if (name !== 'Clara' && name !== 'Dibe' && name !== 'Clo' && name !== 'Yaa') {
-    let nope = toGhs(personNopeCfa(name))
-    if (name === 'Abraham') {
-      // Apply Clara's ₵130 fuel credit to Abraham's NopeGali share
-      nope = Math.round((nope - 130) * 100) / 100
-      out.push({
-        from: name,
-        to: 'clara',
-        ghs: nope,
-        note: 'NopeGali − Clara fuel ₵130',
-        personId,
-        coupleId: person.coupleId,
-      })
-    } else {
-      out.push({
-        from: name,
-        to: 'clara',
-        ghs: nope,
-        note: 'NopeGali lunch',
-        personId,
-        coupleId: person.coupleId,
-      })
-    }
+  // NopeGali → Clara
+  // Skip household (Clara paid); Yaa cancels vs Blue Turtle; Abraham + Effiba settled via border + snacks
+  if (
+    name !== 'Clara' &&
+    name !== 'Dibe' &&
+    name !== 'Clo' &&
+    name !== 'Yaa' &&
+    name !== 'Abraham' &&
+    name !== 'Effiba'
+  ) {
+    out.push({
+      from: name,
+      to: 'clara',
+      ghs: toGhs(personNopeCfa(name)),
+      note: 'NopeGali lunch',
+      personId,
+      coupleId: person.coupleId,
+    })
   }
 
   // Blue Turtle → Yaa
@@ -360,8 +348,7 @@ export function personReceives(personId: PersonId): { label: string; ghs: number
       // Yaa cancelled against Clara → Yaa Blue Turtle
       { label: 'Felix', ghs: toGhs(10_500), note: 'NopeGali' },
       { label: 'Flora', ghs: toGhs(8_000), note: 'NopeGali' },
-      { label: 'Abraham', ghs: Math.round((toGhs(10_000) - 130) * 100) / 100, note: 'NopeGali − fuel net' },
-      { label: 'Effiba', ghs: toGhs(6_500), note: 'NopeGali' },
+      // Abraham + Effiba NopeGali settled via border + snacks agreement
     ]
   }
   return []
@@ -411,13 +398,11 @@ export function personCalcSteps(personId: PersonId): CalcStep[] {
     // single item already shown
   }
 
-  if (name === 'Abraham') {
-    const raw = toGhs(nopeCfa)
-    const net = Math.round((raw - 130) * 100) / 100
+  if (name === 'Abraham' || name === 'Effiba') {
     steps.push({
-      label: 'NopeGali → Clara (after fuel net)',
-      formula: `${formatGhs(raw)} − ₵130.00 Clara fuel`,
-      result: formatGhs(net),
+      label: 'NopeGali → Clara',
+      formula: `${nopeCfa.toLocaleString()} CFA ÷ ${RATE} = ${formatGhs(nopeGhs)}`,
+      result: 'Settled — border + snacks agreement',
     })
   } else if (name === 'Yaa') {
     steps.push({
@@ -533,9 +518,9 @@ export function personCalcSteps(personId: PersonId): CalcStep[] {
   }
   if (name === 'Clara') {
     steps.push({
-      label: 'Fuel → Abraham',
-      formula: '₵130.00 netted off Abraham’s NopeGali',
-      result: 'Settled (no send)',
+      label: 'Abraham + Effiba NopeGali',
+      formula: `${formatGhs(toGhs(16_500))} lunch (+ ₵130 fuel)`,
+      result: 'Settled — border + snacks agreement',
     })
     steps.push({
       label: 'Yaa ↔ Clara net',

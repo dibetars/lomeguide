@@ -44,6 +44,7 @@ export default function PersonSplitPage({ params }: { params: { person: string }
   const calcSteps = personCalcSteps(person.id)
   const household =
     person.name === 'Dibe' || person.name === 'Clo' || person.name === 'Clara'
+  const nopeSettledAgreement = person.name === 'Abraham' || person.name === 'Effiba'
 
   return (
     <>
@@ -138,8 +139,8 @@ export default function PersonSplitPage({ params }: { params: { person: string }
             </div>
             {person.id === 'clara' && (
               <p className="font-body text-xs text-white/40 mt-4">
-                Collect on {PAYEES.clara.display}. Yaa’s NopeGali cancels your Blue Turtle — nothing to send her.
-                Dibe & Clo’s lunch is already covered in your bill.
+                Collect on {PAYEES.clara.display}. Yaa’s NopeGali cancels your Blue Turtle. Abraham + Effiba
+                settled via border + snacks. Dibe & Clo’s lunch is already in your bill.
               </p>
             )}
             {person.id === 'yaa' && (
@@ -148,17 +149,21 @@ export default function PersonSplitPage({ params }: { params: { person: string }
                 netted off your road send. Fiifi’s share can stay inside the couple.
               </p>
             )}
-            {person.id === 'abraham' && (
-              <p className="font-body text-xs text-white/40 mt-4">
-                Clo’s fuel is paid (₵280). Clara’s ₵130 fuel is already netted off your NopeGali send.
-              </p>
-            )}
             {person.id === 'felix' && (
               <p className="font-body text-xs text-white/40 mt-4">
                 You paid ₵1,200 road. Your Blue Turtle to Yaa is netted — collect ₵300 from Fiifi and the
                 netted amount from Yaa. Still send NopeGali to Clara.
               </p>
             )}
+          </section>
+        )}
+
+        {(person.id === 'abraham' || person.id === 'effiba') && (
+          <section className="px-5 sm:px-8 md:px-16 pb-6">
+            <p className="font-body text-xs text-white/40 max-w-2xl">
+              NopeGali to Clara is settled via your border + snacks agreement — nothing to send her. Clo’s
+              fuel to Abraham is paid (₵280). Only Blue Turtle to Yaa remains.
+            </p>
           </section>
         )}
 
@@ -174,7 +179,9 @@ export default function PersonSplitPage({ params }: { params: { person: string }
               <p className="font-body text-xs text-white/40 mt-2">
                 {household
                   ? 'Covered by Clara’s bill'
-                  : `${nopeCfa.toLocaleString()} CFA ÷ ${RATE}`}
+                  : nopeSettledAgreement
+                    ? 'Settled via border + snacks · no MoMo'
+                    : `${nopeCfa.toLocaleString()} CFA ÷ ${RATE}`}
               </p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
